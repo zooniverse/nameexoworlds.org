@@ -7,6 +7,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :provider
       t.string   :name
       t.string   :email
+      t.string   :avatar
+      t.string   :oauth_token
+      t.datetime :oauth_expires_at
       t.integer  :vote_count, :default => 0
       t.timestamps
     end
