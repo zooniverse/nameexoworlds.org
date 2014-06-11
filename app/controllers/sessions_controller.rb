@@ -1,8 +1,13 @@
 class SessionsController < ApplicationController
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
-    self.current_user = @user
+    session[:uid] = @user.uid
     redirect_to '/'
+  end
+
+  def destroy
+    session[:uid] = nil
+    redirect_to root_url, :notice => "Signed out!"
   end
 
   protected
