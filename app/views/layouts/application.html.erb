@@ -20,6 +20,9 @@
         <%= javascript_include_tag "application"%>
         <%= csrf_meta_tags %>
 
+        <script>
+          window.session = <%=session.to_json%>
+        </script>
 
     </head>
     <body>
