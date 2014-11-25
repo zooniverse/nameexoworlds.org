@@ -5,6 +5,7 @@ gem 'rails', '4.0.4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
+gem 'bootstrap-sass'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -14,7 +15,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'ember-rails'
 gem 'ember-source', '1.5.0'
-
 gem 'pg'
 
 gem 'devise'
