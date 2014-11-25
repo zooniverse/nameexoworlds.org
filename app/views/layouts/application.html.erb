@@ -1,14 +1,99 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Astronamer</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<%= yield %>
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <%= stylesheet_link_tag    "application", media: "all"%>
+        <%= javascript_include_tag "application"%>
+        <%= csrf_meta_tags %>
 
+
+    </head>
+    <body>
+
+      <nav class="navbar navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">NameExoWorlds</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div id="main-nav" class="collapse navbar-collapse navbar-ex5-collapse">
+    <ul class="nav navbar-nav nav-collapse">
+      <li><a href="#process">The Process</a></li>
+      <li><a href="#rules">The Rules</a></li>
+      <li><a href="#involved">Get involved</a></li>
+      <li><a href="#planets">The ExoWorlds</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+
+
+<div class="container">
+
+  <div class="row">
+        <div class="col-lg-6">
+          <div class="text-center">
+            <a href='http://www.iau.org/'><img style='height:80px' src='assets/IAULogo.png'/></a>
+            <p>International Astronomical Union</p>
+
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="text-center">
+            <a href='https://www.zooniverse.org/'><img style='padding-top:30px' src='assets/zooniverse-wordmark-web-white-small.png'/></a>
+          </div>
+        </div>
+  </div>
+
+
+	<div class="row">
+
+      <h1 style='font-size:60px' class="text-center hidden-xs"><strong>NameExoWorlds</strong></h1>
+      <h1 class="text-center visible-xs"><strong>NameExoWorlds</strong></h1>
+      <p class="lead text-center">Help decide the names of planets orbiting other stars</p>
+	</div>
+
+	<div id='involved' class="row">
+      	<div class="col-lg-6">
+          <div class="text-center">
+            <h1>For Public and Astronomy-Interested Organisations</h1>
+            <p>To submit a naming proposal, register your club with the IAU.</p>
+
+            <a href='http://directory.iau.org/'><button class="btn btn-primary btn-lg">Register</button></a>
+          </div>
+      	</div>
+      	<div class="col-lg-6">
+          <div class="text-center">
+      	 	<h1>For individuals</h1>
+            <p>To vote, sign up, and we’ll let you know when we’re ready for you!<br><br><br> </p>
+
+          	<a href='#signup'><button class="btn btn-primary btn-lg">Sign Up</button></a>
+          </div>
+      	</div>
+  </div>
+
+  <hr>
+
+  <%=yield%>
 </body>
 </html>
