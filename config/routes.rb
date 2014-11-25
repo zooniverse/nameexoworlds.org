@@ -10,6 +10,9 @@ Astronamer::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  get '/session' => 'home#debug_session'
+
+  get '/clubs/current' => 'clubs#current'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
