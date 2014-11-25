@@ -1,6 +1,6 @@
 
 Devise.setup do |config|
-  config.cas_base_url = "https://directorylogin.iau.org"
+  config.cas_base_url = "https://directorylogin.iau.org/cas/"
 
   require 'devise/orm/active_record'
   # you can override these if you need to, but cas_base_url is usually enough
