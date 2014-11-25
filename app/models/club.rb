@@ -6,6 +6,7 @@ class Club < ActiveRecord::Base
   has_many :system_votes
 
   def cas_extra_attributes=(extra_attributes)
+    puts extra_attributes
     extra_attributes.each do |name, value|
       case name.to_sym
       when :fullname
