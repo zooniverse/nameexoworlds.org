@@ -20,6 +20,9 @@ gem 'ember-source', '1.5.0'
 
 gem 'pg'
 
+gem 'devise'
+gem 'devise_cas_authenticatable'
+
 gem 'omniauth'
 gem 'omniauth-cas'
 gem 'omniauth-facebook'
