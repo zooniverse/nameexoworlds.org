@@ -1,10 +1,21 @@
 #= require jquery
-#= require handlebars
-#= require ember
 #= require bootstrap
-#= require ember-data
 #= require_self
-#= require astronamer
 
-# for more details see: http://emberjs.com/guides/application/
-window.Astronamer = Ember.Application.create()
+$ ->
+  $(".system_row").click ()->
+      window.location = "/systems/#{$(this).data()["systemId"]}"
+
+  $(".remove_vote").click (e)->
+      e.preventDefault()
+      system_id = $(this).data().systemId;
+      $.post "/systems/#{system_id}/add_club_vote", ()->
+        $(".remove_vote").css("display","none")
+        $(".add_vote").css("display","inline")
+
+  $(".add_vote").click (e)->
+      e.preventDefault()
+      system_id = $(this).data().systemId;
+      $.post "/systems/#{system_id}/remove_club_vote", ()->
+        $(".remove_vote").css("display","inline")
+        $(".add_vote").css("display","none")
