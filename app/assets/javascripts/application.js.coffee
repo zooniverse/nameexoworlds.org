@@ -9,13 +9,21 @@ $ ->
   $(".remove_vote").click (e)->
       e.preventDefault()
       system_id = $(this).data().systemId;
-      $.post "/systems/#{system_id}/remove_club_vote", ()->
-        $(".remove_vote").css("display","none")
-        $(".add_vote").css("display","inline")
+      $(".updating").show()
+      $(".remove_vote").hide()
+      $(".add_vote").hide()
+
+      $.post "/systems/#{system_id}/remove_club_vote", (data)->
+        $(".add_vote").show()
+        $(".vote_count").html(data.new_vote_count)
 
   $(".add_vote").click (e)->
       e.preventDefault()
       system_id = $(this).data().systemId;
+      $(".updating").show()
+      $(".remove_vote").hide()
+      $(".add_vote").hide()
+
       $.post "/systems/#{system_id}/add_club_vote", ()->
-        $(".remove_vote").css("display","inline")
-        $(".add_vote").css("display","none")
+        $(".remove_vote").show
+        $(".vote_count").html(data.new_vote_count)
