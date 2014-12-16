@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  respond_to :json, :html
 
   def index
 
@@ -9,4 +10,17 @@ class HomeController < ApplicationController
       format.json {render :json => session.to_json}
     end
   end
+
+  def the_process
+  end
+
+  def rules
+
+  end
+
+
+  def the_exoworlds
+    @systems = System.all
+  end
+
 end
