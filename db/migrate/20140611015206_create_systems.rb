@@ -1,15 +1,12 @@
 class CreateSystems < ActiveRecord::Migration
   def change
     create_table :systems do |t|
-      t.float            :ra
-      t.float            :dec
-      t.string           :star_name
+      t.string           :name
       t.float            :mass
-      t.float            :luminosity
-      t.float            :radius
-      t.string           :star_type
-      t.integer          :no_planets
-      t.float            :distance
+      t.float            :vmag
+      t.string           :visibility
+      t.string           :constellation
+      t.boolean          :nameable, default: true
       t.timestamps
     end
   end
