@@ -23,6 +23,8 @@ Astronamer::Application.routes.draw do
       post 'remove_club_vote'
     end
   end
+
+  resources :club 
    # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
