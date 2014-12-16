@@ -1,1 +1,27 @@
 <h1><%=@club.username%></h1>
+
+<p>We are asking you to vote on systems to be taken to the next stage of the naming proces. You can vote for as many
+  systems as you like but only once on each system</p>
+
+
+<h2>Your votes</h2>
+
+<% if @club.system_votes.count == 0 %>
+  <p>You have yet to vote on any systems. Go <%=link_to 'here', '/systems'%> to start voting on systems</p>
+<%else%>
+
+  <table class="table table-condensed table-hover">
+
+    <thead>
+      <tr><td> Host Star (catalogue)</td> <td># Planet (designation)</td> <td> Planet Mass (Jupiter mass)</td> <td>Planet Mass (Earth mass)</td> <td> Orbital Period (day)</td> <td> Semi Major Axis (au)</td> <td>Discovery (year)</td> <td>Constellation (English)</td> <td>Visibility </td> <td>V magnitude </td></tr>
+    </thead>
+    <tbody>
+
+    <%@club.system_votes.collect{|v| v.system}.each do |s|%>
+      <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+    <%end%>
+
+    </tbody>
+  </table>
+
+<%end%>

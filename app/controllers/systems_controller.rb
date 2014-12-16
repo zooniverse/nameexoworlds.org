@@ -1,5 +1,5 @@
 class SystemsController < ApplicationController
-  # before_action :authenticate_club!
+  before_action :authenticate_club! except:[:show]
 
   protect_from_forgery :except => [:add_club_vote, :remove_club_vote]
 
@@ -19,6 +19,10 @@ class SystemsController < ApplicationController
     else
       raise ActionController::RoutingError.new('Not Found')
     end
+  end
+
+  def index
+  
   end
 
   def show
