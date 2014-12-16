@@ -1,5 +1,5 @@
 class SystemsController < ApplicationController
-  before_action :authenticate_club! except:[:show]
+  before_action :authenticate_club!,  except: [:show]
 
   protect_from_forgery :except => [:add_club_vote, :remove_club_vote]
 
@@ -22,7 +22,7 @@ class SystemsController < ApplicationController
   end
 
   def index
-  
+
   end
 
   def show
