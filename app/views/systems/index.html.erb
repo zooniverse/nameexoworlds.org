@@ -1,0 +1,63 @@
+<div id='planets' class='row'>
+  <div class='col-lg-12'>
+    <h1 class='center-text'>The ExoWorlds</h1>
+    <p>The ExoWorlds list of exoplanets and their host stars being available for public naming at the initiative of the IAU is a list compiled from several exoplanet databases, including exoplanet.eu [2] and exoplanets.org [3].</p>
+    <p>This list includes well-studied exoplanets discovered over twenty years, up to 31 December 2008. A period of at least five years since the discovery has been considered as a simple and satisfactory criterion to include exoplanets which can be considered as confirmed. All the discoveries were made using various methods, including radial velocities, transits, microlensing and direct imagery.</p>
+    <p>For these exoplanets, the scientific nomenclature follows the nomenclature rules widely adopted by the scientific community, which are drawn from the rules for naming binary stars. For each planet, the name of the host star (around which planets are orbiting) is followed by a lower-case letter: b for the first discovered exoplanet, c for the second, etc. (The letters are capitalized in the case of binaries: the "primary" star name is followed by "A", and its companion stars are labelled by the same name followed by "B", "C", etc.).</p>
+    <p>In the ExoWorlds list, four stars already have common names: Fomalhaut (alpha Piscis Austrini) is one of the four “royal stars” of ancient Persia, with Aldebaran, Antares, and Regulus; Pollux (beta Geminorum) is the twin brother of Castor, son of Zeus (Jupiter) and Leda, from the ancient Greek and Roman mythologies — the constellation Gemini is named after them (Gemini means twins in latin).  Two other stars also have common names: gamma Cephei (Errai, Arabic for shepherd), and iota Draconis (Edasich, Arabic also). These stars have common names as well in other cultures [1].</p>
+    <p>Consequently these four stars cannot be considered for public naming.</p>
+  </div>
+
+  <div class='row'>
+
+    <p>As an orginisation we need your help to select systems to open to a public vote. You can vote for as many of the systems as you like but only once per system</p></div>
+
+  <div class='row'>
+    <div class="table-responsive">
+      <table class="table table-condensed table-hover">
+
+        <thead>
+          <tr><td> Host Star (catalogue)</td> <td># Planet (designation)</td> <td> Planet Mass (Jupiter mass)</td> <td>Planet Mass (Earth mass)</td> <td> Orbital Period (day)</td> <td> Semi Major Axis (au)</td> <td>Discovery (year)</td> <td>Constellation (English)</td> <td>Visibility </td> <td>V magnitude </td></tr>
+        </thead>
+        <tbody>
+          <tr class='section'><td colspan="10">1 exoplanet (4 systems)</td></tr>
+          <%@systems.select{|s| s.nameable==false}.each do |s|%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%end%>
+
+          <tr class='section'><td colspan="10">1 star + 1 exoplanet (4 systems)</td></tr>
+          <%@systems.select{|s| s.planets.count==1 and s.nameable==true}.each do |s|%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%end%>
+
+          <tr class='section'><td colspan=10> 1 star + 2 exoplanets (20 systems)</td></tr>
+          <%@systems.select{|s| s.planets.count==2 and s.nameable==true}.each do |s|%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%end%>
+          <tr class='section'><td colspan=10>1 star + 3 exoplanets (9 systems)</td></tr>
+
+          <%@systems.select{|s| s.planets.count==3 and s.nameable==true}.each do |s|%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%end%>
+
+          <tr class='section'><td colspan=10>1 star + 4 exoplanets (1 system)</td></tr>
+
+          <%@systems.select{|s| s.planets.count==4 and s.nameable==true}.each do |s|%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%end%>
+
+          <tr class='section'><td colspan=10>1 star + 5 exoplanets (1 system)</td></tr>
+          <%@systems.select{|s| s.planets.count==5 and s.nameable==true}.each do |s|%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class='row'>
+    <h2>References</h2>
+    <p>[1] Allen, R.H., 1899, "Star Names: their lore and their meaning" (Dover Publications, rev.  ed. 1963)</p>
+    <p>[2] Schneider, J., Dedieu, C., Le Sidaner, P., Savalle, R., and Zolotukhin, I. 2011, “Defining and cataloging exoplanets: the exoplanet.eu database”, Astronomy & Astrophysics, vol.532, id.A79, 11 pp.</p>
+    <p>[3] Wright, J. T., Fakhouri, O., Marcy, G. W., Han, E., Feng, Y., Johnson, John Asher, Howard, A. W., Fischer, D. A., Valenti, J. A., Anderson, J., Piskunov, N. 2011, “The Exoplanet Orbit Database”, Publications of the Astronomical Society of the Pacific, Vol.123, issue 902, pp.412-422.</p>
+  </div>

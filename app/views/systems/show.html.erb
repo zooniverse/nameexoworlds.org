@@ -1,0 +1,45 @@
+
+<%if @club%>
+  <h1><%=@system.name%>:  <span><%=@system.system_vote_count%> Votes</span>
+      <span style="<%= 'display:none' if     @system.has_club_vote(@club)%>" class='remove_vote pull-right' data-system-id=<%=@system.id %> > Remove vote for this system <span class="glyphicon glyphicon-ok voted_on" aria-hidden="true"></span></span>
+      <span style="<%= 'display:none' unless @system.has_club_vote(@club)%>" class='add_vote pull-right'    data-system-id=<%=@system.id %> >  Vote for this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span></span>
+  </h1>
+
+<%else%>
+  <h1><%=@system.name%>
+  </h1>
+<%end%>
+
+<div class='row'>
+  <div class ='col-md-5'>
+    <div class="panel panel-default ">
+      <div class="panel-heading">Star details</div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">Constallation: <span class=' pull-right'><%=@system.constellation%></span></li>
+          <li class="list-group-item">Vmag: <span class='pull-right'><%=@system.vmag%></span></li>
+          <li class="list-group-item">Visibility: <span class='pull-right'><%=@system.visibility%></span> </li>
+          <li class="list-group-item">No planets: <span class='pull-right'><%=@system.planets.count%></span> </li>
+          <li class="list-group-item">Namable:    <span class='pull-right'><%=@system.nameable ? "Yes" : "No"%></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-md-7'>
+    <div class="panel panel-default ">
+      <div class="panel-heading">Planet details</div>
+      <div class="panel-body">
+        <%@system.planets.each do |planet|%>
+          <ul class="list-group">
+            <h3><%=planet.name%></h3>
+
+            <li class="list-group-item">Mass (jupiters): <span class='pull-right'> <%=planet.mass_jup%></span></li>
+            <li class="list-group-item">Mass (earths): <span class='pull-right'><%=planet.mass_earth%></span> </li>
+            <li class="list-group-item">Period (days): <span class='pull-right'><%=planet.period%> </span></li>
+          </ul>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
