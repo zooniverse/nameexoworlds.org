@@ -21,24 +21,38 @@
   <p class="lead text-center">Help decide the names of planets orbiting other stars</p>
 </div>
 
-<div id='involved' class="row">
-  <div class="col-lg-6">
-    <div class="text-center">
-      <h1>For Public and Astronomy-Interested Organisations</h1>
-      <p>To submit a naming proposal, register your club with the IAU.</p>
+<%if current_club%>
 
-      <a href='http://directory.iau.org/'><button class="btn btn-primary btn-lg">Register</button></a>
-      <a href='/clubs/sign_in'><button class="btn btn-primary btn-lg">Sign In</button></a>
+  <div  class="row">
+    <div class='text-center'>
+    <h1>Welcome back <%=current_club.username%></h1>
+    <p>You can now start voting on systems to be named.</p>
+      <a href='/systems'><button class="btn btn-primary btn-lg">See systems</button></a>
+      <a href='/systems'><button class="btn btn-primary btn-lg">See your votes</button></a>
     </div>
   </div>
-  <div class="col-lg-6">
-    <div class="text-center">
-      <h1>For individuals</h1>
-      <p>To vote, sign up, and we’ll let you know when we’re ready for you!<br><br><br> </p>
 
-      <a href='#signup'><button class="btn btn-primary btn-lg">Sign Up</button></a>
+<%else%>
+  <div id='involved' class="row">
+    <div class="col-lg-6">
+      <div class="text-center">
+        <h1>For Public and Astronomy-Interested Organisations</h1>
+        <p>To submit a naming proposal, register your club with the IAU.</p>
+
+        <a href='http://directory.iau.org/'><button class="btn btn-primary btn-lg">Register</button></a>
+        <a href='/clubs/sign_in'><button class="btn btn-primary btn-lg">Sign In</button></a>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="text-center">
+        <h1>For individuals</h1>
+        <p>To vote, sign up, and we’ll let you know when we’re ready for you!<br><br><br> </p>
+
+        <a href='#signup'><button class="btn btn-primary btn-lg">Sign Up</button></a>
+      </div>
     </div>
   </div>
-</div>
+  
+<%end%>
 
 <hr>
