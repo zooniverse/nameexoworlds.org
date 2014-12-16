@@ -1,6 +1,0 @@
-{{#if user}}
-  <img style='display:inline' {{bind-attr src=user.avatar}} > <h2 style='display:inline'> Welcome {{hiName}}</h2> <span><a href='/logout'>logout</a> </span>
-{{else}}
-  <h2>Sign in with one of these methods to start naming planets</h2>
-  <a href='/auth/facebook' class="btn btn-primary" >Facebook</a> <a  class='btn btn-success' href='/auth/twitter'>twitter</a>
-{{/if}}
