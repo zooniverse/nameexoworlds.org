@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125173353) do
+ActiveRecord::Schema.define(version: 20141216212249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,21 +38,19 @@ ActiveRecord::Schema.define(version: 20141125173353) do
   add_index "clubs", ["reset_password_token"], name: "index_clubs_on_reset_password_token", unique: true, using: :btree
 
   create_table "planets", force: true do |t|
-    t.text     "description"
-    t.float    "mass"
-    t.float    "radius"
+    t.text     "name"
+    t.float    "mass_jup"
+    t.float    "mass_earth"
     t.float    "semi_major"
     t.float    "period"
-    t.float    "designation"
     t.integer  "top_vote"
     t.string   "top_vote_name"
     t.float    "total_votes"
     t.integer  "system_id"
-    t.string   "discovery_method"
-    t.datetime "discovery_date"
-    t.datetime "discovery_survey"
+    t.integer  "discovery_year"
     t.string   "image_url"
-    t.string   "state",            default: "pending"
+    t.string   "state",          default: "pending"
+    t.boolean  "nameable",       default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,16 +72,18 @@ ActiveRecord::Schema.define(version: 20141125173353) do
     t.datetime "updated_at"
   end
 
+  create_table "system_votes", force: true do |t|
+    t.integer "club_id"
+    t.integer "system_id"
+  end
+
   create_table "systems", force: true do |t|
-    t.float    "ra"
-    t.float    "dec"
-    t.string   "star_name"
+    t.string   "name"
     t.float    "mass"
-    t.float    "luminosity"
-    t.float    "radius"
-    t.string   "star_type"
-    t.integer  "no_planets"
-    t.float    "distance"
+    t.float    "vmag"
+    t.string   "visibility"
+    t.string   "constellation"
+    t.boolean  "nameable",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
