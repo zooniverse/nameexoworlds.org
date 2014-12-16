@@ -15,8 +15,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'rails_12factor'
 
-gem 'ember-rails'
-gem 'ember-source', '1.5.0'
 gem 'pg'
 
 gem 'devise'
