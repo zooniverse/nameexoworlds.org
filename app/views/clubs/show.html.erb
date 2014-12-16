@@ -18,7 +18,7 @@
     <tbody>
 
     <%@club.system_votes.collect{|v| v.system}.each do |s|%>
-      <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+      <%=render  partial: "home/system_table_rows", :locals=>{system:s}%>
     <%end%>
 
     </tbody>
