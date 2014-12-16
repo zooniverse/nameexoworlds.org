@@ -6,7 +6,7 @@ class SystemsController < ApplicationController
   def add_club_vote
     if @system = System.find(params[:id]) and (current_club || Club.first)
       @system.vote_from_club(current_club || Club.first)
-      render :json => {new_vote_count: @system.system_vote_count}
+      render :json => {new_vote_count: @system.system_vote_count}.to_json
     else
       raise ActionController::RoutingError.new('Not Found')
     end
@@ -15,7 +15,7 @@ class SystemsController < ApplicationController
   def remove_club_vote
     if @system = System.find(params[:id]) and (current_club || Club.first)
       @system.remove_vote_from_club(current_club || Club.first)
-      render :json => {new_vote_count: @system.system_vote_count}
+      render :json => {new_vote_count: @system.system_vote_count}.to_json
     else
       raise ActionController::RoutingError.new('Not Found')
     end
