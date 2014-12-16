@@ -22,7 +22,7 @@ class SystemsController < ApplicationController
   end
 
   def index
-
+    @systems = System.all
   end
 
   def show
