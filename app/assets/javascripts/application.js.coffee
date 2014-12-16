@@ -24,6 +24,6 @@ $ ->
       $(".remove_vote").hide()
       $(".add_vote").hide()
 
-      $.post "/systems/#{system_id}/add_club_vote", ()->
+      $.post "/systems/#{system_id}/add_club_vote", (data)->
         $(".remove_vote").show
         $(".vote_count").html(data.new_vote_count)
