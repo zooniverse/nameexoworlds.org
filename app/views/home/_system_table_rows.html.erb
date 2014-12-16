@@ -1,0 +1,3 @@
+<%system.planets.each do |planet|%>
+  <tr class='system_row' data-system-id = <%=system.id %> ><td><%=system.name%></td> <td><%=planet.name%></td> <td><%=planet.mass_jup%></td> <td><%=planet.mass_earth%></td> <td><%=planet.period%></td> <td><%=planet.semi_major%></td> <td><%=planet.discovery_year%></td> <td><%=system.constellation%></td> <td><%=system.visibility%></td> <td><%=system.vmag%></td></tr>
+<%end%>
