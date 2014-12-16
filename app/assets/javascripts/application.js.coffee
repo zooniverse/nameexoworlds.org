@@ -15,6 +15,7 @@ $ ->
 
       $.post "/systems/#{system_id}/remove_club_vote", (data)->
         $(".add_vote").show()
+        $(".updating").hide()
         $(".vote_count").html(data.new_vote_count)
 
   $(".add_vote").click (e)->
@@ -25,5 +26,6 @@ $ ->
       $(".add_vote").hide()
 
       $.post "/systems/#{system_id}/add_club_vote", (data)->
-        $(".remove_vote").show
+        $(".remove_vote").show()
+        $(".updating").hide()
         $(".vote_count").html(data.new_vote_count)
