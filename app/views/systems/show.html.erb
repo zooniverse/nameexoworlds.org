@@ -1,8 +1,8 @@
 
 <%if @club%>
   <h1><%=@system.name%>:  <span><%=@system.system_vote_count%> Votes</span>
-      <span style="<%= 'display:none' if     @system.has_club_vote(@club)%>" class='remove_vote pull-right' data-system-id=<%=@system.id %> > Remove vote for this system <span class="glyphicon glyphicon-ok voted_on" aria-hidden="true"></span></span>
-      <span style="<%= 'display:none' unless @system.has_club_vote(@club)%>" class='add_vote pull-right'    data-system-id=<%=@system.id %> >  Vote for this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span></span>
+      <span style="<%= 'display:none' unless     @system.has_club_vote(@club)%>" class='remove_vote pull-right' data-system-id=<%=@system.id %> > Remove vote for this system <span class="glyphicon glyphicon-ok voted_on" aria-hidden="true"></span></span>
+      <span style="<%= 'display:none' if @system.has_club_vote(@club)%>" class='add_vote pull-right'    data-system-id=<%=@system.id %> >  Vote for this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span></span>
   </h1>
 
 <%else%>
