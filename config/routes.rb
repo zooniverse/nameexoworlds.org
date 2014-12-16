@@ -13,7 +13,17 @@ Astronamer::Application.routes.draw do
   get '/session' => 'home#debug_session'
 
   get '/clubs/current' => 'clubs#current'
-  # Example of regular route:
+
+  get '/the_process'   => "home#the_process"
+  get '/the_exoworlds' => "home#the_exoworlds"
+
+  resources :systems do
+    member do
+      post 'add_club_vote'
+      post 'remove_club_vote'
+    end
+  end
+   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
