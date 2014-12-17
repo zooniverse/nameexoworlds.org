@@ -1,6 +1,10 @@
 #= require jquery
 #= require bootstrap
 #= require_self
+#= require react
+#= require react_ujs
+#= require components
+
 
 $ ->
   $(".system_row").click ()->
