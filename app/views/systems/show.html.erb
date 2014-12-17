@@ -12,8 +12,14 @@
   </h1>
 <%end%>
 
+
+
 <div class='row'>
-  <div class ='col-md-5'>
+
+  <div class= 'col-md-5'>
+    <%= react_component "SystemViewer", star_mag: @system.vmag, planets:@system.planets %>
+  </div>
+  <div class ='col-md-7'>
     <div class="panel panel-default ">
       <div class="panel-heading">Star details</div>
       <div class="panel-body">
@@ -28,7 +34,9 @@
     </div>
   </div>
 
-  <div class='col-md-7'>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
     <div class="panel panel-default ">
       <div class="panel-heading">Planet details</div>
       <div class="panel-body">
@@ -39,6 +47,7 @@
             <li class="list-group-item">Mass (jupiters): <span class='pull-right'> <%=planet.mass_jup%></span></li>
             <li class="list-group-item">Mass (earths): <span class='pull-right'><%=planet.mass_earth%></span> </li>
             <li class="list-group-item">Period (days): <span class='pull-right'><%=planet.period%> </span></li>
+            <li class="list-group-item">Semi Major Axis (AU): <span class='pull-right'><%=planet.semi_major%> </span></li>
           </ul>
         <%end%>
       </div>
