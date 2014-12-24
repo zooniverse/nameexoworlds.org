@@ -145,3 +145,8 @@ tr.section>td{
 .remove_vote .add_vote{
 	cursor: pointer;
 }
+
+.navbar .nav.pull-right {
+	float: right;
+	margin-right: 20px; /*set margin this way in your custom styesheet*/
+}
