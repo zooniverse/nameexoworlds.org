@@ -1,13 +1,13 @@
 <h1><%=@club.username%></h1>
 
-<p>We are asking you to vote on systems to be taken to the next stage of the naming proces. You can vote for as many
+<p>We are asking you to select systems to be taken to the next stage of the naming proces. You can select as many
   systems as you like but only once on each system</p>
 
 
-<h2>Your votes</h2>
+<h2>Your selection</h2>
 
 <% if @club.system_votes.count == 0 %>
-  <p>You have yet to vote on any systems. Go <%=link_to 'here', '/systems'%> to start voting on systems</p>
+  <p>You have yet to select any systems. Go <%=link_to 'here', '/systems'%> to start selecting systems</p>
 <%else%>
 
   <table class="table table-condensed table-hover">
