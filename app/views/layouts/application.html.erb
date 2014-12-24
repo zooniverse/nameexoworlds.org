@@ -41,7 +41,7 @@
         <li><a href="/the_exoworlds">The ExoWorlds</a></li>
         <%if current_club%>
           <li><%= link_to current_club.username, current_club%></li>
-          <li><%= link_to "logout", destroy_club_session%></li>
+          <li><%= link_to "logout", "/clubs/sign_out"%></li>
         <%else%>
           <li><a href="/clubs/sign_in">Organization Sign In</a></li>
         <%end%>
