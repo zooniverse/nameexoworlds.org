@@ -26,7 +26,7 @@ class SystemsController < ApplicationController
   end
 
   def show
-    @club = current_club || Club.first
+    @club = current_club 
     @system = System.find(params[:id])
   end
 
