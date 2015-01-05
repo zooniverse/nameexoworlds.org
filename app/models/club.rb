@@ -13,6 +13,8 @@ class Club < ActiveRecord::Base
         self.fullname = value
       when :email
         self.email = value
+      when :can_vote
+        self.can_vote = value
       end
     end
   end
@@ -20,6 +22,7 @@ class Club < ActiveRecord::Base
   def votes_remaining
     vote_limit - system_votes.count
   end
+
   def has_reached_vote_limit?
     system_votes.count >= vote_limit
   end
