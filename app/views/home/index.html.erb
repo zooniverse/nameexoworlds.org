@@ -26,7 +26,7 @@
   <div  class="row">
     <div class='text-center'>
     <h1>Welcome back <%=current_club.username%></h1>
-    <%if @club.can_vote%>
+    <%if current_club.can_vote%>
       <p>You can now start selecting systems to be named.</p>
       <a href='/systems'><button class="btn btn-primary btn-lg">See systems</button></a>
       <a href='/clubs/<%=current_club.id%>'><button class="btn btn-primary btn-lg">See your selections</button></a>
