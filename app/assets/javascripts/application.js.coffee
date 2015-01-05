@@ -20,7 +20,7 @@ $ ->
       $.post "/systems/#{system_id}/remove_club_vote", (data)->
         $(".add_vote").show()
         $(".updating").hide()
-        new_count = $("selection_count").html().to_i - 1
+        new_count = $("selection_count").html().to_i + 1
         $("selection_count").html(new_count)
 
   $("#create_selection").click (e)->
@@ -33,5 +33,5 @@ $ ->
       $.post "/systems/#{system_id}/add_club_vote", (data)->
         $(".remove_vote").show()
         $(".updating").hide()
-        new_count = $("selection_count").html().to_i + 1
+        new_count = $("selection_count").html().to_i - 1
         $("selection_count").html(new_count)
