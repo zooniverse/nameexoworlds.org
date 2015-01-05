@@ -9,7 +9,7 @@
     <%else%>
       <div class='add_vote' style="<%= 'display:none' if @system.has_club_vote(@club)%>">
         <p id='create_selection'  data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span> </p>
-        <p> You have <%=@club.votes_remaining%> selections remaining.</p>
+        <p> You have <span id="selection_count"><%=@club.votes_remaining%></span> selections remaining.</p>
       </div>
       <p style="display:none" class='updating '>Updating</p>
     <%end%>
