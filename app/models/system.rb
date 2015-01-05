@@ -3,7 +3,7 @@ class System < ActiveRecord::Base
   has_many :system_votes
 
   def vote_from_club(club)
-    system_votes.create(club: club) unless has_club_vote(club)
+    system_votes.create(club: club) unless has_club_vote(club) or club.has_reached_vote_limit?
   end
 
   def remove_vote_from_club(club)
