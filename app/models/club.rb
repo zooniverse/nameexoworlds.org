@@ -17,4 +17,15 @@ class Club < ActiveRecord::Base
     end
   end
 
+  def votes_remaining
+    vote_limit - system_votes.count
+  end
+  def has_reached_vote_limit?
+    system_votes.count >= vote_limit
+  end
+
+  def vote_limit
+    20
+  end
+
 end
