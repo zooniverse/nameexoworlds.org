@@ -8,7 +8,7 @@
       <p>You have reached your selection limit. Please unselect another system to select this one.</p>
     <%else%>
       <div class='add_vote' style="<%= 'display:none' if @system.has_club_vote(@club)%>">
-        <p      data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span> </p>
+        <p id='create_selection'  data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span> </p>
         <p> You have <%=@club.votes_remaining%> selections remaining.</p>
       </div>
       <p style="display:none" class='updating '>Updating</p>

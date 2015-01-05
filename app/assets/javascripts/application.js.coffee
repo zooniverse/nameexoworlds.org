@@ -22,7 +22,7 @@ $ ->
         $(".updating").hide()
         $(".vote_count").html(data.new_vote_count)
 
-  $(".add_vote").click (e)->
+  $("#create_selection").click (e)->
       e.preventDefault()
       system_id = $(this).data().systemId;
       $(".updating").show()
