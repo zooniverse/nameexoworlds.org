@@ -1,15 +1,19 @@
 
+<h1><%=@system.name%></h1>
 <%if @club%>
-  <h1><%=@system.name%>:  <span><span class='vote_count'><%=@system.system_vote_count%></span> Votes</span>
-      <span style="<%= 'display:none' unless     @system.has_club_vote(@club)%>" class='remove_vote pull-right' data-system-id=<%=@system.id %> > Remove selection for this system <span class="glyphicon glyphicon-ok voted_on" aria-hidden="true"></span></span>
-      <span style="<%= 'display:none' if @system.has_club_vote(@club)%>" class='add_vote pull-right'    data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span></span>
-      <span style="display:none" class='updating pull-right'>Updating</span>
 
-  </h1>
+  <p style="<%= 'display:none' unless     @system.has_club_vote(@club)%>" class='remove_vote ' data-system-id=<%=@system.id %> > Remove selection for this system <span class="glyphicon glyphicon-ok voted_on" aria-hidden="true"></span></p>
 
-<%else%>
-  <h1><%=@system.name%>
-  </h1>
+  <% if @club.has_reached_vote_limit? %>
+      <p>You have reached your selection limit. Please unselect another system to select this one.</p>
+    <%else%>
+      <div class='add_vote' style="<%= 'display:none' if @system.has_club_vote(@club)%>">
+        <p      data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span> </p>
+        <p> You have <%=@club.votes_remaining%> selections remaining.</p>
+      </div>
+      <p style="display:none" class='updating '>Updating</p>
+    <%end%>
+
 <%end%>
 
 
