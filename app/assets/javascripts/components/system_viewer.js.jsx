@@ -41,7 +41,6 @@ var SystemViewer = React.createClass({
       return this.props.orbit_scale;
     }
     max_orbit = Math.max.apply(null,this.props.planets.map(function(p){return p.semi_major}))
-    console.log("max orbit is ", max_orbit)
     return  max_orbit
   },
 
