@@ -75,7 +75,7 @@ var SystemViewer = React.createClass({
 
         <circle fill={"yellow"} r={10} cx={this.center_x()} cy={this.center_y()}></circle>
         <circle fill={"none"} stroke={"green"} cx={this.center_x()} cy={this.center_y()} r={this.orbit_radius({semi_major: 1.0})}></circle>
-        <text x={this.props.width - 80} y="15" fill="white">1 Au</text>
+        <text x={this.props.width - 80} y="15" fill="white">1 Astronomical Unit</text>
 
         {orbits}
         {p_dots}
