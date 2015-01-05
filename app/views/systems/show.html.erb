@@ -6,6 +6,8 @@
 
   <% if @club.has_reached_vote_limit? %>
       <p>You have reached your selection limit. Please unselect another system to select this one.</p>
+    <%elsif @club.can_vote==false%>
+      <p>Your organisation is not eligible for joining the NameExoWorlds contest, please refer to <a href="https://directory.iau.org/faq">https://directory.iau.org/faq</a> for details.
     <%else%>
       <div class='add_vote' style="<%= 'display:none' if @system.has_club_vote(@club)%>">
         <p id='create_selection'  data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span> </p>
