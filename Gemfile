@@ -17,6 +17,7 @@ gem 'rails_12factor'
 
 gem 'pg'
 
+gem 'actionpack-page_caching'
 gem 'devise'
 gem 'devise_cas_authenticatable'
 
