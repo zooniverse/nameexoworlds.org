@@ -1,6 +1,9 @@
 class SystemsController < ApplicationController
   before_action :authenticate_club!,  except: [:show]
 
+  caches_page :index
+  
+
   protect_from_forgery :except => [:add_club_vote, :remove_club_vote]
 
   def add_club_vote
@@ -26,7 +29,7 @@ class SystemsController < ApplicationController
   end
 
   def show
-    @club = current_club 
+    @club = current_club
     @system = System.find(params[:id])
   end
 
