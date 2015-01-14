@@ -10,13 +10,15 @@ class Club < ActiveRecord::Base
     puts extra_attributes
     extra_attributes.each do |name, value|
       case name.to_sym
-      when :fullname
-        self.fullname = value
+      when :username
+        self.username = value
       when :email
         self.email = value
       when :can_vote
         self.can_vote = value
       end
+
+      self.email = "#{rand*100000.to_i}@#{rand*100000.to_i}.com"
     end
   end
 
