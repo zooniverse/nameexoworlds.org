@@ -21,6 +21,8 @@ gem 'actionpack-page_caching'
 gem 'devise'
 gem 'devise_cas_authenticatable'
 
+gem 'bugsnag'
+
 gem 'omniauth'
 gem 'omniauth-cas'
 gem 'omniauth-facebook'
