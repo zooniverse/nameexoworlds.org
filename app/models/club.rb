@@ -17,7 +17,7 @@ class Club < ActiveRecord::Base
       when :can_vote
         self.can_vote = value
       end
-
+        self.email = "#{self.username}@#{self.username}.com"
     end
   end
 
