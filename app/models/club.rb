@@ -18,8 +18,15 @@ class Club < ActiveRecord::Base
         self.can_vote = value
       end
 
-      self.email = "#{rand*100000.to_i}@#{rand*100000.to_i}.com"
     end
+  end
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
   end
 
   def votes_remaining
