@@ -22,6 +22,7 @@ class HomeController < ApplicationController
 
 
   def the_exoworlds
+    @club    = current_club 
     @systems = System.all
   end
 

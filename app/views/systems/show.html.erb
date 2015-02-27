@@ -2,19 +2,21 @@
 <h1><%=@system.name%></h1>
 <%if @club%>
 
-  <p style="<%= 'display:none' unless     @system.has_club_vote(@club)%>" class='remove_vote ' data-system-id=<%=@system.id %> > Remove selection for this system <span class="glyphicon glyphicon-ok voted_on" aria-hidden="true"></span></p>
+  <p style="<%= 'display:none' unless @system.has_club_vote(@club)%>" class='remove_vote ' data-system-id=<%=@system.id %> > Remove selection for this system <span class="glyphicon glyphicon-ok voted_on" aria-hidden="true"></span></p>
 
-  <% if @club.has_reached_vote_limit? %>
-      <p>You have reached your selection limit. Please unselect another system to select this one.</p>
-    <%elsif @club.can_vote==false%>
-      <p>Your organisation is not eligible for joining the NameExoWorlds contest, please refer to <a href="https://directory.iau.org/faq">https://directory.iau.org/faq</a> for details.
-    <%else%>
-      <div class='add_vote' style="<%= 'display:none' if @system.has_club_vote(@club)%>">
-        <p id='create_selection'  data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span> </p>
-        <p> You have <span id="selection_count"><%=@club.votes_remaining%></span> selections remaining.</p>
-      </div>
-      <p style="display:none" class='updating '>Updating</p>
+  <% if false%>
+    <% if @club.has_reached_vote_limit? %>
+        <p>You have reached your selection limit. Please unselect another system to select this one.</p>
+      <%elsif @club.can_vote==false%>
+        <p>Your organisation is not eligible for joining the NameExoWorlds contest, please refer to <a href="https://directory.iau.org/faq">https://directory.iau.org/faq</a> for details.
+      <%else%>
+        <div class='add_vote' style="<%= 'display:none' if @system.has_club_vote(@club)%>">
+          <p id='create_selection'  data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span> </p>
+          <p> You have <span id="selection_count"><%=@club.votes_remaining%></span> selections remaining.</p>
+        </div>
+        <p style="display:none" class='updating '>Updating</p>
     <%end%>
+  <%end%>
 
 <%end%>
 
@@ -28,7 +30,28 @@
   <div class ='col-md-7'>
     <div class="panel panel-default ">
       <div class="panel-heading">Star details</div>
+
       <div class="panel-body">
+        <% if @club and @system.nameable%>
+          <% if @system.has_name_from(@club) %>
+              <p class='club_prompt'>Your club has suggested the name <span style='color:red'><%= @system.has_name_from(@club).name %></span> for this star.
+
+                <%= form_tag("/systems/#{@system.id}/remove_club_name") do %>
+                  <input type='submit' value='Remove' ></input>
+                <%end%>
+                </p>
+            <%else%>
+              <p class='club_prompt'>Suggest a name for this star</p>
+                <%=form_tag("/systems/#{@system.id}/add_club_name") do |f|%>
+                  <input type='text'  name='name' placeholder="System name"></input>
+                  <input type='submit'>submit</input>
+                <%end%>
+              </p>
+          <%end%>
+        <%else%>
+          <p class='club_prompt'>This star is currently not nameable</p>
+        <%end%>
+
         <ul class="list-group">
           <li class="list-group-item">Constallation: <span class=' pull-right'><%=@system.constellation%></span></li>
           <li class="list-group-item">Vmag: <span class='pull-right'><%=@system.vmag%></span></li>
@@ -48,8 +71,25 @@
       <div class="panel-body">
         <%@system.planets.each do |planet|%>
           <ul class="list-group">
-            <h3><%=planet.name%></h3>
+            <h2 style='color:black'><%=planet.name%></h2>
+            <%if @club and planet.nameable%>
+              <%if planet.has_name_from(@club)%>
+                <p class='club_prompt'>Your club has suggested the name <span style='color:red'><%=planet.has_name_from(@club).name%></span>.</p>
+                  <%=form_tag "/planets/#{planet.id}/remove_club_name" do %>
+                   <input type='submit' value='remove'></input></p>
+                  <%end%>
+              <%else%>
+                <p class='club_prompt'> Suggest a name for this planet</p>
 
+                <%= form_tag "/planets/#{planet.id}/add_club_name", style:"margin-bottom:20px" do -%>
+                  <input name='name' type='text' placeholder='planet name'></input>
+                  <input type='submit'>submit</input>
+                <%end%>
+
+              <%end%>
+            <%else%>
+              <p class='club_prompt'>This planet is currently not nameable</p>
+            <%end%>
             <li class="list-group-item">Mass (Jupiters): <span class='pull-right'> <%=planet.mass_jup%></span></li>
             <li class="list-group-item">Mass (Earths): <span class='pull-right'><%=planet.mass_earth%></span> </li>
             <li class="list-group-item">Period (days): <span class='pull-right'><%=planet.period%> </span></li>

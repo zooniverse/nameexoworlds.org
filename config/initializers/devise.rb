@@ -37,4 +37,5 @@ Devise.setup do |config|
   # config.warden do |manager|
   #   manager.failure_app = DeviseCasAuthenticatable::SingleSignOut::WardenFailureApp
   # end
+  config.authentication_keys = [ :username ]
 end

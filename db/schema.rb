@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105223115) do
+ActiveRecord::Schema.define(version: 20150227195720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20150105223115) do
     t.boolean  "can_vote"
   end
 
-  add_index "clubs", ["email"], name: "index_clubs_on_email", unique: true, using: :btree
   add_index "clubs", ["reset_password_token"], name: "index_clubs_on_reset_password_token", unique: true, using: :btree
 
   create_table "planets", force: true do |t|
@@ -60,9 +59,11 @@ ActiveRecord::Schema.define(version: 20150105223115) do
     t.string   "name"
     t.integer  "planet_id"
     t.integer  "vote_count"
-    t.integer  "proposing_organisation_id"
+    t.integer  "club_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "nameable_entity_id"
+    t.string   "nameable_entity_type"
   end
 
   create_table "proposing_organisations", force: true do |t|

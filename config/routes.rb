@@ -21,6 +21,18 @@ Astronamer::Application.routes.draw do
     member do
       post 'add_club_vote'
       post 'remove_club_vote'
+      post 'add_club_name'
+      post 'remove_club_name'
+    end
+  end
+
+
+  resources :planets do
+    member do
+      post 'add_club_vote'
+      post 'remove_club_vote'
+      post 'add_club_name'
+      post 'remove_club_name'
     end
   end
 

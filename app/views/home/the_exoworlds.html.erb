@@ -10,6 +10,44 @@
 </div>
 </div>
 
+<h2>Currently nameable systems</h2>
+<div class='row'>
+  <div class="table-responsive">
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <%if @club%>
+            <td>Your system name</td>
+            <td>Your planet name</td>
+          <%end%>
+
+          <td> Host Star (catalogue)</td>
+          <td># Planet (designation)</td>
+          <td> Planet Mass (Jupiter mass)</td>
+          <td>Planet Mass (Earth mass)</td>
+          <td> Orbital Period (day)</td>
+          <td> Semi Major Axis (au)</td>
+          <td>Discovery (year)</td>
+          <td>Constellation (English)</td>
+          <td>Visibility </td>
+          <td>V magnitude </td></tr>
+      </thead>
+      <tbody>
+        <%@systems.select{|s| s.nameable==true or s.nameable_planets > 0}.each do |s|%>
+          <%if @club%>
+            <%=render  partial: "system_table_rows", :locals=>{system:s, club:@club, show_proposed_name:true }%>
+          <%else%>
+            <%=render  partial: "system_table_rows", :locals=>{system:s, show_proposed_name:false}%>
+          <%end%>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<h2>All systems</h2>
+
 <div class='row'>
   <div class="table-responsive">
     <table class="table table-condensed table-hover">
@@ -19,34 +57,34 @@
       </thead>
       <tbody>
         <tr class='section'><td colspan="10">1 exoplanet (4 systems)</td></tr>
-        <%@systems.select{|s| s.nameable==false}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+        <%@systems.each do |s|%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
         <%end%>
 
         <tr class='section'><td colspan="10">1 star + 1 exoplanet (4 systems)</td></tr>
         <%@systems.select{|s| s.planets.count==1 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
         <%end%>
 
         <tr class='section'><td colspan=10> 1 star + 2 exoplanets (20 systems)</td></tr>
         <%@systems.select{|s| s.planets.count==2 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
         <%end%>
         <tr class='section'><td colspan=10>1 star + 3 exoplanets (9 systems)</td></tr>
 
         <%@systems.select{|s| s.planets.count==3 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
         <%end%>
 
         <tr class='section'><td colspan=10>1 star + 4 exoplanets (1 system)</td></tr>
 
         <%@systems.select{|s| s.planets.count==4 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
         <%end%>
 
         <tr class='section'><td colspan=10>1 star + 5 exoplanets (1 system)</td></tr>
         <%@systems.select{|s| s.planets.count==5 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
         <%end%>
       </tbody>
     </table>

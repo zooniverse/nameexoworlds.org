@@ -2,7 +2,7 @@ class Club < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :cas_authenticatable
-  has_many :propsed_names
+  has_many :proposed_names
   has_many :system_votes
 
   def cas_extra_attributes=(extra_attributes)
@@ -41,4 +41,11 @@ class Club < ActiveRecord::Base
     20
   end
 
+  def proposed_planet_names
+    proposed_names.where(:nameable_entity_type => "planet")
+  end
+
+  def proposed_star_names
+    proposed_names.where(:nameable_entity_type => "system")
+  end
 end

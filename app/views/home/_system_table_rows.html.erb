@@ -1,3 +1,20 @@
 <%system.planets.each do |planet|%>
-  <tr class='system_row' data-system-id = <%=system.id %> ><td><%=system.name%></td> <td><%=planet.name%></td> <td><%=planet.mass_jup%></td> <td><%=planet.mass_earth%></td> <td><%=planet.period%></td> <td><%=planet.semi_major%></td> <td><%=planet.discovery_year%></td> <td><%=system.constellation%></td> <td><%=system.visibility%></td> <td><%=system.vmag%></td></tr>
+
+  <tr class='system_row' data-system-id = <%=system.id %> >
+
+    <%if show_proposed_name %>
+      <td style='color:#3881C0'><%=system.has_name_from(club) ? system.has_name_from(club).name : "click to name"%></td>
+      <td style='color:#3881C0'><%=planet.has_name_from(club) ? planet.has_name_from(club).name : "click to name"%></td>
+    <%end%>
+
+    <td><%=system.name%></td>
+    <td><%=planet.name%></td>
+    <td><%=planet.mass_jup%></td>
+    <td><%=planet.mass_earth%></td>
+    <td><%=planet.period%></td>
+    <td><%=planet.semi_major%></td>
+    <td><%=planet.discovery_year%></td>
+    <td><%=system.constellation%></td>
+    <td><%=system.visibility%></td>
+    <td><%=system.vmag%></td></tr>
 <%end%>

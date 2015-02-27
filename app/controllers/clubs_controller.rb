@@ -1,5 +1,5 @@
 class ClubsController < ApplicationController
-  before_action :authenticate_club!
+  before_action :authenticate_club!, except: [:show]
 
   def current
     respond_to do |format|
@@ -9,8 +9,8 @@ class ClubsController < ApplicationController
 
   def show
     @club = Club.find(params[:id])
-    if @club !=current_club
-      redirect_to '/'
-    end
+    # if @club !=current_club
+      # redirect_to '/'
+    # end
   end
 end

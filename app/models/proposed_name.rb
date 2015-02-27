@@ -1,6 +1,6 @@
 class ProposedName < ActiveRecord::Base
-    belongs_to :proposing_organisation
-    belongs_to :planet
+    belongs_to :club
+    belongs_to :nameable_entity, polymorphic: true
     has_many   :votes
 
     # def inc_vote_count
@@ -12,4 +12,8 @@ class ProposedName < ActiveRecord::Base
     #   decrement! :vote_count
     #   planet.dec_vote_count, self
     # end
+
+    def system
+      nameable_entity_type == 'System' ? nameable_entity : nameable_entity.system
+    end
 end
