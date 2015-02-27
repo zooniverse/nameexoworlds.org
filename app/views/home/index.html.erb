@@ -27,9 +27,9 @@
     <div class='text-center'>
     <h1>Welcome back <%=current_club.username%></h1>
     <%if current_club.can_vote%>
-      <p>You can now start selecting systems to be named.</p>
+      <p>You can now start naming systems.</p>
       <a href='/systems'><button class="btn btn-primary btn-lg">See systems</button></a>
-      <a href='/clubs/<%=current_club.id%>'><button class="btn btn-primary btn-lg">See your selections</button></a>
+      <a href='/clubs/<%=current_club.id%>'><button class="btn btn-primary btn-lg">See your names</button></a>
     <%else%>
       <p>Your organisation is not eligible for joining the NameExoWorlds contest, please refer to <a href="https://directory.iau.org/faq">https://directory.iau.org/faq</a> for details.
     <%end%>
