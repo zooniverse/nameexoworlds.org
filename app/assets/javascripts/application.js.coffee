@@ -35,3 +35,30 @@ $ ->
         $(".updating").hide()
         new_count = $("selection_count").html().to_i - 1
         $("selection_count").html(new_count)
+
+  $(".limit_text").keypress (e)->
+     e.preventDefault() if @value.replace(" ", "").length >= 16
+
+  $("#removeSuggestion").click (e)->
+    system_id          = $("#clubSuggestion").data().systemId
+    $.post "/systems/#{system_id}/remove_club_suggestion", ->
+      location.reload()
+
+  $("#saveSubmission").click (e)->
+    remarks = $("#remarks").val()
+    system_name        = $(".systemNameEntry input").val()
+    system_description = $(".systemNameEntry textarea").val()
+    system_id          = $(".systemNameEntry").data().systemId
+    planets={}
+
+    $(".planetNameEntry").each (index, el)->
+     planet_id   = $(el).data().planetId;
+     name        = $(el).find("input").val()
+     description = $(el).find("textarea").val()
+     planets[planet_id] = {name: name, description: description}
+    result = {system_name: system_name, system_description: system_description, planets: planets, remarks: remarks}
+
+    $.post "/systems/#{system_id}/create_club_suggestion", result, ->
+      location.reload()
+
+  # $("#submit_names").click(e)->

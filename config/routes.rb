@@ -23,6 +23,8 @@ Astronamer::Application.routes.draw do
       post 'remove_club_vote'
       post 'add_club_name'
       post 'remove_club_name'
+      post 'create_club_suggestion'
+      post 'remove_club_suggestion'
     end
   end
 

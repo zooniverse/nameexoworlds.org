@@ -1,5 +1,5 @@
 class PlanetsController < ApplicationController
-  before_action :authenticate_club!,  except: [:show]
+  # before_action :authenticate_club!,  except: [:show]
 
   def add_club_name
     if @planet = Planet.find(params[:id]) and current_club

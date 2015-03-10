@@ -4,6 +4,7 @@ class Club < ActiveRecord::Base
   devise :cas_authenticatable
   has_many :proposed_names
   has_many :system_votes
+  has_many :remarks
 
   def cas_extra_attributes=(extra_attributes)
     puts "EXTA ATTRIBUTES"
@@ -47,5 +48,13 @@ class Club < ActiveRecord::Base
 
   def proposed_star_names
     proposed_names.where(:nameable_entity_type => "system")
+  end
+
+  def has_propsed_for_system(system)
+    !remarks.find_by_system_id(system.id).nil?
+  end
+
+  def can_suggest
+    proposed_names.count == 0
   end
 end

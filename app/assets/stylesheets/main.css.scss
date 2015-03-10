@@ -17,13 +17,13 @@ body {
 }
 
 .row{
-  padding: 40px 0px
+  padding: 20px 0px
 }
 .navbar{
   background-color: rgba(0,0,0,0.7)
 }
 
-input{
+input, textarea{
     color:black;
     background: #f0f0f0;
     border: 1px solid #ccc;
@@ -36,6 +36,11 @@ input{
     padding: 12px;
     width: 30%;
 }
+
+textarea {
+    resize: none;
+}
+
 
 a:link, a:visited {
 	color:#eee;

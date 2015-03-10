@@ -50,3 +50,25 @@
 .voted_on{
   color:green;
 }
+
+
+
+.row.planetNameEntry{
+  margin-bottom: 20px;
+  box-sizing:border-box;
+  padding: 0px 20px;
+}
+
+.row.systemNameEntry{
+  margin-bottom: 20px;
+  box-sizing:border-box;
+  padding: 0px 20px;
+}
+
+.row.planetNameEntry input{
+  height: 60px
+}
+
+.row.systemNameEntry input{
+  height: 60px
+}

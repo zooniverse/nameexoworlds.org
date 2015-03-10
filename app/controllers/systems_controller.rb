@@ -33,6 +33,47 @@ class SystemsController < ApplicationController
     @system = System.find(params[:id])
   end
 
+  def remove_club_suggestion
+    club = current_club || Club.first
+    if @system = System.find(params[:id]) and club
+      @system.remove_club_suggestion(club)
+      render :json => @system.to_json
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
+  def create_club_suggestion
+
+    club = current_club
+
+    if @system = System.find(params[:id]) and club and club.can_suggest
+
+      @system.proposed_names.create({
+          name: params[:system_name],
+          description: params[:system_description],
+          club:club
+      })
+
+      @system.remarks.create({
+          club: club,
+          body: params[:remarks]
+      })
+
+      params[:planets].each do |planet_id, details|
+        Planet.find(planet_id).proposed_names.create({
+          name: details[:name],
+          description: params[:description],
+          club: club
+        })
+      end
+
+      render :json => @system.to_json
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
   def add_club_name
     if @system = System.find(params[:id]) and (current_club)
       @system.proposed_names.create(name: params[:name], club: (current_club))
