@@ -6,13 +6,14 @@
 #= require components
 
 
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-  }
-});
+
 
 $ ->
+
+  $.ajaxSetup
+    headers:
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+
   $(".system_row").click ()->
       window.location = "/systems/#{$(this).data()["systemId"]}"
 
