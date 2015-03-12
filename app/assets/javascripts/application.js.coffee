@@ -47,7 +47,7 @@ $ ->
      e.preventDefault() if @value.replace(" ", "").length >= 16
 
   $("#removeSuggestion").click (e)->
-    system_id          = $("#clubSuggestion").data().systemId
+    system_id          = $(".systemNameEntry").data().systemId
     $.post "/systems/#{system_id}/remove_club_suggestion", ->
       location.reload()
 
