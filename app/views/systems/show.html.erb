@@ -34,7 +34,7 @@
       <div class="panel-body">
         <% if @club and @system.nameable%>
           <% if @system.has_name_from(@club) %>
-              <p class='club_prompt' id='clubSuggestion' data-system-id="<%=@system.id%>">Your club has suggested the name
+              <p class='club_prompt systemNameEntry' id='clubSuggestion' data-system-id="<%=@system.id%>">Your club has suggested the name
                 <span style='color:red'><%= @system.has_name_from(@club).name %></span> for this star.
               </p>
               <p class='club_prompt'><%=@system.has_name_from(@club).description%></p>
