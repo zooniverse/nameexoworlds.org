@@ -47,7 +47,7 @@ $ ->
      allowed =[46, 8]
      charCode =  e.keyCode
      if allowed.indexOf(charCode) == -1
-       e.preventDefault() if @value.replace(" ", "").length >= 16 and
+       e.preventDefault() if @value.replace(" ", "").length >= 16 
 
   $("#removeSuggestion").click (e)->
     system_id          = $(".systemNameEntry").data().systemId
