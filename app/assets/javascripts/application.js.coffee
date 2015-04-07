@@ -44,10 +44,10 @@ $ ->
         $("selection_count").html(new_count)
 
   $(".limit_text").keypress (e)->
-     allowed =[46, 8]
+     allowed =[46, 8, 37, 38,39,40]
      charCode =  e.keyCode
      if allowed.indexOf(charCode) == -1
-       e.preventDefault() if @value.replace(" ", "").length >= 16 
+       e.preventDefault() if @value.replace(" ", "").length >= 16
 
   $("#removeSuggestion").click (e)->
     system_id          = $(".systemNameEntry").data().systemId
