@@ -46,7 +46,8 @@ $ ->
   $(".limit_text").keypress (e)->
      allowed =[46, 8]
      charCode =  e.keyCode
-     e.preventDefault() if @value.replace(" ", "").length >= 16 and allowed.indexOf(charCode) != -1
+     if allowed.indexOf(charCode) == -1
+       e.preventDefault() if @value.replace(" ", "").length >= 16 and
 
   $("#removeSuggestion").click (e)->
     system_id          = $(".systemNameEntry").data().systemId
