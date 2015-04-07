@@ -45,7 +45,7 @@ $ ->
 
   $(".limit_text").keypress (e)->
      allowed =[46, 8]
-     charCode = (evt.which) ? evt.which : event.keyCode
+     charCode =  e.keyCode
      e.preventDefault() if @value.replace(" ", "").length >= 16 and allowed.indexOf(charCode) != -1
 
   $("#removeSuggestion").click (e)->
