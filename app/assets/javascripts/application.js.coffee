@@ -48,7 +48,7 @@ $ ->
      allowed =/[^0-9A-Za-z\s]/
 
      charCode =  e.keyCode
-     string_length = @value.replace( /\ /g ,"").length
+     string_length = @value.replace( /\ /g, "").length
 
      if string_length < 16
        if !charCode.match(allowed)
@@ -63,8 +63,6 @@ $ ->
       location.reload()
 
   $("#saveSubmission").click (e)->
-
-    if
 
     remarks = $("#remarks").val()
     system_name        = $(".systemNameEntry input").val()
