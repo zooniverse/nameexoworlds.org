@@ -44,10 +44,17 @@ $ ->
         $("selection_count").html(new_count)
 
   $(".limit_text").keypress (e)->
-     allowed =[46, 8, 37, 38,39,40]
+     allowedAfter =[46, 8, 37, 38,39,40]
+     allowed =/[^0-9A-Za-z\s]/
      charCode =  e.keyCode
+     string_length = @value.replace(/ /g,"").length >= 16
+
+     if string_length < 16
+       if !charCode.match(allowed)
+         e.preventDefault()
+
      if allowed.indexOf(charCode) == -1
-       e.preventDefault() if @value.replace(/ /g,"").length >= 16
+       e.preventDefault() if string_length >= 16
 
   $("#removeSuggestion").click (e)->
     system_id          = $(".systemNameEntry").data().systemId
@@ -55,6 +62,9 @@ $ ->
       location.reload()
 
   $("#saveSubmission").click (e)->
+
+    if
+
     remarks = $("#remarks").val()
     system_name        = $(".systemNameEntry input").val()
     system_description = $(".systemNameEntry textarea").val()
