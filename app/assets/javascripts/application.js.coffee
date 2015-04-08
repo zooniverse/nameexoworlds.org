@@ -45,7 +45,7 @@ $ ->
 
   $(".limit_text").keypress (e)->
      allowedAfter =[46, 8, 37, 38,39,40]
-     allowed =/[^0-9A-Za-z\s]/
+     allowed =/[0-9A-Za-z\s]/
 
      charCode =  e.keyCode
      string_length = @value.replace( /\ /g, "").length
