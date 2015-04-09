@@ -1,6 +1,6 @@
 <h1><%=@club.username%></h1>
 
-<p>We are asking you to suggest names for selected stars and planets! To see the full list of nameable objects go <a href='/the_exoworlds'>here</a></p>
+<p>We are asking you to suggest a names for selected stars and planets! To see the full list of nameable objects go <a href='/the_exoworlds'>here</a></p>
 
 
 <%if false %>
@@ -31,20 +31,23 @@
 <%end%>
 
 
-<h2>Your selection</h2>
 
-<p>You have named <%=@club.proposed_planet_names.count%> planets and <%=@club.proposed_star_names.count%> stars </p>
 
-<table class="table table-condensed table-hover">
+<%if !@club.can_suggest%>
+  <h2>Your name suggestion</h2>
+  <p>You have named the star and planets of the <%=@club.proposed_names.first.system.name%> system.</p>
 
-  <thead>
-    <tr><td> Host Star (catalogue)</td> <td># Planet (designation)</td> <td> Planet Mass (Jupiter mass)</td> <td>Planet Mass (Earth mass)</td> <td> Orbital Period (day)</td> <td> Semi Major Axis (au)</td> <td>Discovery (year)</td> <td>Constellation (English)</td> <td>Visibility </td> <td>V magnitude </td></tr>
-  </thead>
-  <tbody>
+  <table class="table table-condensed table-hover">
 
-  <%@club.proposed_names.each do |name|%>
-    <%=render  partial: "home/system_table_rows", :locals=>{system:(name.system), club: @club, show_proposed_name: true }%>
-  <%end%>
+    <thead>
+      <tr><td> Host Star (catalogue)</td> <td># Planet (designation)</td> <td> Planet Mass (Jupiter mass)</td> <td>Planet Mass (Earth mass)</td> <td> Orbital Period (day)</td> <td> Semi Major Axis (au)</td> <td>Discovery (year)</td> <td>Constellation (English)</td> <td>Visibility </td> <td>V magnitude </td></tr>
+    </thead>
+    <tbody>
 
-  </tbody>
-</table>
+    <%@club.proposed_names.each do |name|%>
+      <%=render  partial: "home/system_table_rows", :locals=>{system:(name.system), club: @club, show_proposed_name: true }%>
+    <%end%>
+
+    </tbody>
+  </table>
+<%end%>
