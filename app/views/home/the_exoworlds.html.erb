@@ -23,12 +23,7 @@
           <%end%>
 
           <td> Host Star (catalogue)</td>
-          <td># Planet (designation)</td>
-          <td> Planet Mass (Jupiter mass)</td>
-          <td>Planet Mass (Earth mass)</td>
-          <td> Orbital Period (day)</td>
-          <td> Semi Major Axis (au)</td>
-          <td>Discovery (year)</td>
+          <td> Number of planets</td>
           <td>Constellation (English)</td>
           <td>Visibility </td>
           <td>V magnitude </td></tr>
@@ -36,9 +31,9 @@
       <tbody>
         <%@systems.select{|s| s.nameable==true or s.nameable_planets > 0}.each do |s|%>
           <%if @club%>
-            <%=render  partial: "system_table_rows", :locals=>{system:s, club:@club, show_proposed_name:true }%>
+            <%=render  partial: "system_table_rows", :locals=>{system:s, club:@club, show_proposed_name:true, only_system: true }%>
           <%else%>
-            <%=render  partial: "system_table_rows", :locals=>{system:s, show_proposed_name:false}%>
+            <%=render  partial: "system_table_rows", :locals=>{system:s, show_proposed_name:false, only_system: true}%>
           <%end%>
         <%end%>
       </tbody>
@@ -49,7 +44,7 @@
 <div id="background" class="row">
   <div class="col-lg-12">
     <h1 class="center-text">About the 20 Systems</h1>
-    <p>While there are no astronomical names for exoplanets, the host stars have well known and multiple astronomical designations. The IAU standardized the names, abbreviations, and boundaries for the 88 constellations, and the 
+    <p>While there are no astronomical names for exoplanets, the host stars have well known and multiple astronomical designations. The IAU standardized the names, abbreviations, and boundaries for the 88 constellations, and the
 nomenclature of astronomical objects such as stars, nebulae, or galaxies is described in <a href="http://www.iau.org/public/themes/naming/">http://www.iau.org/public/themes/naming/</a>.</p>
 <p>Standard astronomical nomenclature allows one to find and identify stars or astronomical objects and assists astronomers in conducting research on specific objects.  The SIMBAD astronomical database provides basic data, cross-identifications, bibliography and measurements for astronomical objects outside the solar system (<a href="http://simbad.u-strasbg.fr/simbad/">http://simbad.u-strasbg.fr/simbad/</a>).  Ian Ridpatth’s excellent book Star Tales describes the myths, legends, and history of constellations and is online at <a href="http://www.ianridpath.com/startales/contents.htm">http://www.ianridpath.com/startales/contents.htm</a>.</p>
 
@@ -72,9 +67,9 @@ nomenclature of astronomical objects such as stars, nebulae, or galaxies is desc
 	<li>47 Ursae Majoris (Flamsteed number) is the 47th  star in the constellation Ursa Major, the Great Bear, ordered from west to east.</li>
     <li>Mu Arae is the 12th brightest star in the constellation Ara, the Alter, ordered from west to east</li>
     <li>Edasich, which means hyena, (Bayer number iota Draconis) is the 9th brightest star in the constellation Draco, the Dragon.</li>
-    <li>HD 149026 is the 1449026th star (out of 225,300) in The Henry Draper (HD) Catalogue of stellar spectra arranged from west to east. </li> 
+    <li>HD 149026 is the 1449026th star (out of 225,300) in The Henry Draper (HD) Catalogue of stellar spectra arranged from west to east. </li>
     <li>Fomalhaut, which means mouth of the fish, (Bayer number alpha Piscis Austrini) is the brightest star in the constellation Piscis Austrini, Southern Fish.</li>
-    <li>HD 104985 is the 104985th star (out of 225,300) in The Henry Draper (HD) Catalogue of stellar spectra arranged from west to east.</li> 
+    <li>HD 104985 is the 104985th star (out of 225,300) in The Henry Draper (HD) Catalogue of stellar spectra arranged from west to east.</li>
     <li>18 Delphinis  (Flamsteed number) is the 18th star in the constellation Delphini, the dolphin,
     ordered from west to east.</li>
     <li>Epsilon Eridani is the 5th brightest star in the constellation Eridani, the River.</li>
@@ -103,33 +98,33 @@ nomenclature of astronomical objects such as stars, nebulae, or galaxies is desc
       <tbody>
         <tr class='section'><td colspan="10">1 exoplanet (4 systems)</td></tr>
         <%@systems.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
         <tr class='section'><td colspan="10">1 star + 1 exoplanet (4 systems)</td></tr>
         <%@systems.select{|s| s.planets.count==1 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
         <tr class='section'><td colspan=10> 1 star + 2 exoplanets (20 systems)</td></tr>
         <%@systems.select{|s| s.planets.count==2 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
         <tr class='section'><td colspan=10>1 star + 3 exoplanets (9 systems)</td></tr>
 
         <%@systems.select{|s| s.planets.count==3 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
         <tr class='section'><td colspan=10>1 star + 4 exoplanets (1 system)</td></tr>
 
         <%@systems.select{|s| s.planets.count==4 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
         <tr class='section'><td colspan=10>1 star + 5 exoplanets (1 system)</td></tr>
         <%@systems.select{|s| s.planets.count==5 and s.nameable==true}.each do |s|%>
-          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false}%>
+          <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
       </tbody>
     </table>
