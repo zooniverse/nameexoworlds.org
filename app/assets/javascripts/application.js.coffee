@@ -49,9 +49,9 @@ $ ->
 
      charCode =  e.keyCode
      string_length = @value.replace( /\ /g, "").length
-
+     console.log "character is ", charCode
      if string_length < 16
-       if !charCode.match(allowed)
+       if charCode.match(allowed) == null
          e.preventDefault()
 
      if allowed.indexOf(charCode) == -1
