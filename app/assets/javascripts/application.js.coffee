@@ -78,8 +78,12 @@ $ ->
 
     result = {system_name: system_name, system_description: system_description, planets: planets, remarks: remarks}
 
-    blanks = planets.filter (p)->
-      p.name.replace( /\ /g, "").length == 0 or p.description.replace( /\ /g, "").length == 0
+    blanks = $("input").filter (el)->
+      el.value.replace( /\ /g, "")==0
+    blanks2 = $("textarea").filter(el)->
+      el.value.replace( /\ /g, "")==0
+
+    console.log "blank1 ", blanks, " blanks 2 ", blanks2
 
     if blanks.length > 0 or system_description.replace( /\ /g, "").length==0 or system_name.replace( /\ /g, "").length==0
       alert("Please make sure you fill out all fields.")
