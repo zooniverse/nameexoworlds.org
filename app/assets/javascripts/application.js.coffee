@@ -49,7 +49,7 @@ $ ->
 
      charCode =  e.keyCode
      string_length = @value.replace( /\ /g, "").length
-     console.log "character is ", charCode
+     console.log "character is ", charCode, e
      if string_length < 16
        if charCode.match(allowed) == null
          e.preventDefault()
