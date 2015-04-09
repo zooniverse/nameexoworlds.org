@@ -98,7 +98,7 @@
 </div>
 
 
-<%if @club and @club.can_suggest %>
+<%if @club and @club.can_suggest or  @club.has_propsed_for_system(@system) %>
   <div class='row'>
     <div  class='col-md-12'>
       <div class="panel panel-default ">

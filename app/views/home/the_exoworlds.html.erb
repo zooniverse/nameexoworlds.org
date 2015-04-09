@@ -15,12 +15,11 @@
 
 <%if @club and !@club.can_suggest%>
   <div class='row'>
-      <h2>Your suggestion</h2>
+      <h3>Your suggestion</h3>
       <table class="table table-condensed table-hover">
         <thead>
           <tr>
             <td>Your system name</td>
-            <td>Your planet name</td>
             <td> Host Star (catalogue)</td>
             <td> Number of planets</td>
             <td>Constellation (English)</td>
@@ -36,6 +35,7 @@
 <%end%>
 
 <div class='row'>
+  <h3>Other nameable systems</h3>
   <div class="table-responsive">
     <table class="table table-condensed table-hover">
       <thead>
