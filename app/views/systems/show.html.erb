@@ -20,10 +20,11 @@
 
 <%end%>
 
-
-<div class='row'>
-  <p>Your club has already suggested a name for <%=@club.proposed_names.first.system.name%>. To name this system you will have to <a href='/systems/<%=@club.proposed_names.first.system.id%>'>remove</a> that suggetion.</a></p>
-</div>
+<%if @club and !@club.can_suggest and !@system.has_name_from(@club)%>
+  <div class='row'>
+    <p>Your club has already suggested a name for <%=@club.proposed_names.first.system.name%>. To name this system you will have to <a href='/systems/<%=@club.proposed_names.first.system.id%>'>remove</a> that suggetion.</a></p>
+  </div>
+<%end%>
 <div class='row'>
 
   <div class= 'col-md-5'>
