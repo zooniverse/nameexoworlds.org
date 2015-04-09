@@ -75,7 +75,14 @@ $ ->
      name        = $(el).find("input").val()
      description = $(el).find("textarea").val()
      planets[planet_id] = {name: name, description: description}
+
     result = {system_name: system_name, system_description: system_description, planets: planets, remarks: remarks}
+
+    blanks = planets.filter (p)->
+      p.name.replace( /\ /g, "").length == 0 or p.description.replace( /\ /g, "").length == 0
+
+    if blanks.length > 0 or system_description.replace( /\ /g, "").length==0 or system_name.replace( /\ /g, "").length==0
+      alert("Please make sure you fill out all fields.")
 
     $.post "/systems/#{system_id}/create_club_suggestion", result, ->
       location.reload()
