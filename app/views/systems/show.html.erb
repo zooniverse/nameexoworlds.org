@@ -70,7 +70,7 @@
         <%@system.planets.each do |planet|%>
           <ul class="list-group">
             <h2 style='color:black'><%=planet.name%></h2>
-            <%if @club and planet.nameable @club.can_suggest%>
+            <%if @club and planet.nameable and @club.can_suggest%>
               <%if @system.has_name_from(@club)%>
                 <p class='club_prompt'>Your club has suggested the name <span style='color:red'><%=planet.has_name_from(@club).name%></span>.</p>
                 <p class='club_prompt'><%=planet.has_name_from(@club).name%></p>
