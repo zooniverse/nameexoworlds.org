@@ -1,4 +1,6 @@
 
+<tr class='system_row' data-system-id = <%=system.id %> >
+
 <%if only_system%>
   <%if show_proposed_name %>
     <td style='color:#3881C0'><%=system.has_name_from(club) ? system.has_name_from(club).name : "click to name"%></td>
@@ -13,7 +15,6 @@
 
   <%system.planets.each do |planet|%>
 
-    <tr class='system_row' data-system-id = <%=system.id %> >
 
       <%if show_proposed_name %>
         <td style='color:#3881C0'><%=system.has_name_from(club) ? system.has_name_from(club).name : "click to name"%></td>
