@@ -45,7 +45,7 @@
     <tbody>
 
     <%@club.proposed_names.each do |name|%>
-      <%=render  partial: "home/system_table_rows",  :locals=>{system:(name.system), club: @club, show_proposed_name: true, :only_system: false }%>
+      <%=render  partial: "home/system_table_rows",  :locals=>{system:(name.system), club: @club, show_proposed_name: true, only_system: false }%>
     <%end%>
 
     </tbody>
