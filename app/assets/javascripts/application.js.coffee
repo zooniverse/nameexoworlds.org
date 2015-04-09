@@ -47,9 +47,9 @@ $ ->
      allowedAfter =[46, 8, 37, 38,39,40]
      allowed =/[0-9A-Za-z\s]/
 
-     charCode =  e.keyCode
+     charCode =  e.charCode
      string_length = @value.replace( /\ /g, "").length
-     console.log "character is ", charCode, e
+
      if string_length < 16
        if charCode.match(allowed) == null
          e.preventDefault()
