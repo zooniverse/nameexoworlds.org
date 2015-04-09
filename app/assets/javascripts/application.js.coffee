@@ -6,6 +6,8 @@
 #= require components
 
 
+blank = (s)->
+  typeof(s) == "undefined" ? true : s.replace( /\ /g, "").length == 0
 
 
 $ ->
@@ -47,15 +49,17 @@ $ ->
      allowedAfter =[46, 8, 37, 38,39,40]
      allowed =/[0-9A-Za-z\s]/
 
-     charCode =  e.charCode
+
+     charCode =  e.key
      string_length = @value.replace( /\ /g, "").length
 
      if string_length < 16
-       if charCode.match(allowed) == null
+       if !charCode.match(allowed)
          e.preventDefault()
 
-     if allowed.indexOf(charCode) == -1
-       e.preventDefault() if string_length >= 16
+     if string_length >= 16
+       if allowedAfter.indexOf(e.keyCode) == -1
+         e.preventDefault()
 
   $("#removeSuggestion").click (e)->
     system_id          = $(".systemNameEntry").data().systemId
@@ -63,6 +67,7 @@ $ ->
       location.reload()
 
   $("#saveSubmission").click (e)->
+    any_blank = false
 
     remarks = $("#remarks").val()
     system_name        = $(".systemNameEntry input").val()
@@ -70,26 +75,24 @@ $ ->
     system_id          = $(".systemNameEntry").data().systemId
     planets={}
 
+    if $(".systemNameEntry input").length > 0
+      if blank(system_name) or blank(system_description)
+        any_blank = true
+
     $(".planetNameEntry").each (index, el)->
      planet_id   = $(el).data().planetId;
      name        = $(el).find("input").val()
      description = $(el).find("textarea").val()
+     if blank(name) or blank(description)
+       any_blank=true
      planets[planet_id] = {name: name, description: description}
 
     result = {system_name: system_name, system_description: system_description, planets: planets, remarks: remarks}
 
-    blanks = $("input").filter (el)->
-      el.value.replace( /\ /g, "")==0
-
-    blanks2 = $("textarea").filter (el)->
-      el.value.replace( /\ /g, "")==0
-
-    console.log "blank1 ", blanks, " blanks 2 ", blanks2
-
-    if blanks.length > 0 or system_description.replace( /\ /g, "").length==0 or system_name.replace( /\ /g, "").length==0
+    if any_blank
       alert("Please make sure you fill out all fields.")
-
-    $.post "/systems/#{system_id}/create_club_suggestion", result, ->
-      location.reload()
+    else
+      $.post "/systems/#{system_id}/create_club_suggestion", result, ->
+        location.reload()
 
   # $("#submit_names").click(e)->
