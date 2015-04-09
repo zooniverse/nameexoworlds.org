@@ -80,7 +80,8 @@ $ ->
 
     blanks = $("input").filter (el)->
       el.value.replace( /\ /g, "")==0
-    blanks2 = $("textarea").filter(el)->
+
+    blanks2 = $("textarea").filter (el)->
       el.value.replace( /\ /g, "")==0
 
     console.log "blank1 ", blanks, " blanks 2 ", blanks2
