@@ -35,7 +35,9 @@
 <%end%>
 
 <div class='row'>
-  <h3>Other nameable systems</h3>
+  <%if @club and !@club.can_suggest%>
+    <h3>Other nameable systems</h3>
+  <%end%>
   <div class="table-responsive">
     <table class="table table-condensed table-hover">
       <thead>
