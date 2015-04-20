@@ -10,8 +10,8 @@
 </div>
 </div>
 
-<h2>The top 20 nameable systems</h2>
-<h3>(Deadline of name submission: May 31, 2015 23:59 UTC)</h3>
+<h2>The top 20 nameable systems</h2> g
+<h3>(Deadline of name submission: June 15, 2015 23:59 UTC)</h3>
 
 <%if @club and !@club.can_suggest%>
   <div class='row'>
@@ -144,8 +144,8 @@ nomenclature of astronomical objects such as stars, nebulae, or galaxies is desc
         <tr><td> Host Star (catalogue)</td> <td># Planet (designation)</td> <td> Planet Mass (Jupiter mass)</td> <td>Planet Mass (Earth mass)</td> <td> Orbital Period (day)</td> <td> Semi Major Axis (au)</td> <td>Discovery (year)</td> <td>Constellation (English)</td> <td>Visibility </td> <td>V magnitude </td></tr>
       </thead>
       <tbody>
-        <tr class='section'><td colspan="10">1 exoplanet (4 systems)</td></tr>
-        <%@systems.each do |s|%>
+        <tr class='section'><td colspan="10">1 exoplanet (5 systems)</td></tr>
+        <%@systems.select{|s| s.planets.count==1 and s.nameable==false}.each do |s|%>
           <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
