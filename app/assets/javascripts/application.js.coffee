@@ -7,8 +7,13 @@
 
 
 blank = (s)->
-  typeof(s) == "undefined" ? true : s.replace( /\ /g, "").length == 0
+  result = false
+  if typeof(s) == "undefined"
+    result = true
+  else
+    result = s.replace( /\ /g, "").length == 0
 
+  return result
 
 $ ->
 
@@ -49,8 +54,7 @@ $ ->
      allowedAfter =[46, 8, 37, 38,39,40]
      allowed =/[0-9A-Za-z\s]/
 
-
-     charCode =  e.key
+     charCode =  e.key || String.fromCharCode(e.charCode)
      string_length = @value.replace( /\ /g, "").length
 
      if string_length < 16
@@ -83,11 +87,16 @@ $ ->
      planet_id   = $(el).data().planetId;
      name        = $(el).find("input").val()
      description = $(el).find("textarea").val()
+
+     console.log("any blank check ", name, description, blank(name), blank(description))
+
      if blank(name) or blank(description)
        any_blank=true
      planets[planet_id] = {name: name, description: description}
 
     result = {system_name: system_name, system_description: system_description, planets: planets, remarks: remarks}
+
+    console.log("any blank ", any_blank)
 
     if any_blank
       alert("Please make sure you fill out all fields.")
