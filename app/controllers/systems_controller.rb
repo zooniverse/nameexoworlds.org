@@ -34,7 +34,7 @@ class SystemsController < ApplicationController
   end
 
   def remove_club_suggestion
-    club = current_club 
+    club = current_club
     if @system = System.find(params[:id]) and club
       @system.remove_club_suggestion(club)
       render :json => @system.to_json
