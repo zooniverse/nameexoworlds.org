@@ -101,6 +101,7 @@ $ ->
     if any_blank
       alert("Please make sure you fill out all fields.")
     else
+      $("#saveSubmission").replaceWith($("<p>Loading</p>"))
       $.post "/systems/#{system_id}/create_club_suggestion", result, ->
         location.reload()
 
