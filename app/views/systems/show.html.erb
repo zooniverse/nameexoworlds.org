@@ -2,56 +2,21 @@
 <h1><%=@system.name%></h1>
 <%if @club%>
 
-  <p style="<%= 'display:none' unless @system.has_club_vote(@club)%>" class='remove_vote ' data-system-id=<%=@system.id %> > Remove selection for this system <span class="glyphicon glyphicon-ok voted_on" aria-hidden="true"></span></p>
-
-  <% if false%>
-    <% if @club.has_reached_vote_limit? %>
-        <p>You have reached your selection limit. Please unselect another system to select this one.</p>
-      <%elsif @club.can_vote==false%>
-        <p>Your organisation is not eligible for joining the NameExoWorlds contest, please refer to <a href="https://directory.iau.org/faq">https://directory.iau.org/faq</a> for details.
-      <%else%>
-        <div class='add_vote' style="<%= 'display:none' if @system.has_club_vote(@club)%>">
-          <p id='create_selection'  data-system-id=<%=@system.id %> >  Select this system <span class="glyphicon glyphicon-ok " aria-hidden="true"></span> </p>
-          <p> You have <span id="selection_count"><%=@club.votes_remaining%></span> selections remaining.</p>
-        </div>
-        <p style="display:none" class='updating '>Updating</p>
-    <%end%>
-  <%end%>
-
-<%end%>
-
-<%if @club and !@club.can_suggest and !@system.has_name_from(@club)%>
-  <div class='row'>
-    <p>Your club has already suggested a name for <%=@club.proposed_names.first.system.name%>. To name this system you will have to <a href='/systems/<%=@club.proposed_names.first.system.id%>'>remove</a> that suggetion.</a></p>
-  </div>
-<%end%>
-<div class='row'>
-
   <div class= 'col-md-5'>
     <%= react_component "SystemViewer", star_mag: @system.vmag, planets:@system.planets %>
   </div>
+
   <div class ='col-md-7'>
     <div class="panel panel-default ">
       <div class="panel-heading">Star details</div>
 
-      <div class="panel-body">
-        <% if @club and @system.nameable and @club.can_suggest%>
-          <% if @system.has_name_from(@club) %>
-              <p class='club_prompt systemNameEntry' id='clubSuggestion' data-system-id="<%=@system.id%>">Your club has suggested the name
-                <span style='color:red'><%= @system.has_name_from(@club).name %></span> for this star.
-              </p>
-              <p class='club_prompt'><%=@system.has_name_from(@club).description%></p>
-            <%else%>
-              <p class='club_prompt'>Suggest a name for this star(16 letters or less)</p>
-                <div class='row systemNameEntry' data-system-id="<%=@system.id%>">
-                  <input    class='col-md-4 limit_text'  name='system[name]' type='text' placeholder='Star name (16 characters)'></input>
-                  <textarea class='col-md-7 col-md-offset-1' name='system[description]' placeholder="Description"></textarea>
-                </div>
-              </p>
-          <%end%>
-        <%else%>
-          <p class='club_prompt systemNameEntry' data-system-id="<%=@system.id%>">This star is currently not nameable</p>
-        <%end%>
+
+        <p class='club_prompt'>Suggest a name for this star(16 letters or less)</p>
+          <div class='row systemNameEntry' data-system-id="<%=@system.id%>">
+            <input    class='col-md-4 limit_text'  name='system[name]' type='text' placeholder='Star name (16 characters)'></input>
+            <textarea class='col-md-7 col-md-offset-1' name='system[description]' placeholder="Description"></textarea>
+          </div>
+        </p>
 
         <ul class="list-group">
           <li class="list-group-item">Constallation: <span class=' pull-right'><%=@system.constellation%></span></li>

@@ -5,6 +5,8 @@ class Vote < ActiveRecord::Base
   after_create  :add_vote
   after_destroy :remove_vote
 
+  validates_uniqueness_of :user_id, :scope => :proposed_name_id
+
   def add_vote
     proposed_name.planet.inc_vote_count
     user.inc_vote_count

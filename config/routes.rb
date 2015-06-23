@@ -31,6 +31,8 @@ Astronamer::Application.routes.draw do
 
   resources :planets do
     member do
+      post 'add_public_vote'
+      post 'remove_public_vote'
       post 'add_club_vote'
       post 'remove_club_vote'
       post 'add_club_name'

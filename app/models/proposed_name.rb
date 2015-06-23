@@ -13,6 +13,18 @@ class ProposedName < ActiveRecord::Base
     #   planet.dec_vote_count, self
     # end
 
+    def add_vote_from_user(user)
+      votes.create(user: user)
+    end
+
+    def remove_vote_from_user(user)
+      votes.where(user_id: user.id).destroy
+    end
+
+    def no_votes
+      votes.count
+    end
+
     def system
       nameable_entity_type == 'System' ? nameable_entity : nameable_entity.system
     end

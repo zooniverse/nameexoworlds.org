@@ -4,6 +4,9 @@ class System < ActiveRecord::Base
   has_many :remarks
   has_many :proposed_names, as: :nameable_entity
 
+
+
+  end
   def vote_from_club(club)
     system_votes.create(club: club) unless has_club_vote(club) or club.has_reached_vote_limit?
   end
@@ -21,7 +24,7 @@ class System < ActiveRecord::Base
   end
 
   def has_name_from(club)
-    proposed_names.find_by_club_id(club.id) 
+    proposed_names.find_by_club_id(club.id)
   end
 
   def nameable_planets
