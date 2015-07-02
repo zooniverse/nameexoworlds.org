@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  devise :omniauthable
   has_many :votes
 
   def self.find_or_create_from_auth_hash(auth)
