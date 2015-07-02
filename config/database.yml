@@ -9,7 +9,7 @@ development:
   encoding: unicode
   database: astronamer
   pool: 5
-  username: stuartlynn
+  username: <%= ENV["USER"] %>
   password:
 
 
