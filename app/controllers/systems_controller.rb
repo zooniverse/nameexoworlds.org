@@ -1,5 +1,6 @@
 class SystemsController < ApplicationController
-  before_action :authenticate_club!,  except: [:show]
+  before_action :authenticate_club!, except: [:index, :show, :add_public_vote, :remove_public_vote]
+  before_action :authenticate_user!, only: [:add_public_vote, :remove_public_vote]
 
   caches_page :index
 
