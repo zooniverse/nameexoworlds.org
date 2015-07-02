@@ -4,9 +4,6 @@ class System < ActiveRecord::Base
   has_many :remarks
   has_many :proposed_names, as: :nameable_entity
 
-
-
-  end
   def vote_from_club(club)
     system_votes.create(club: club) unless has_club_vote(club) or club.has_reached_vote_limit?
   end
