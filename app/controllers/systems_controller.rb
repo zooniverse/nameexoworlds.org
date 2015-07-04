@@ -69,7 +69,6 @@ class SystemsController < ApplicationController
   end
 
   def create_club_suggestion
-
     club = current_club
 
     if @system = System.find(params[:id]) and club and club.can_suggest

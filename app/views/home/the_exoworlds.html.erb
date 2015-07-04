@@ -13,31 +13,7 @@
 <h2>The top 20 nameable systems</h2>
 <h3>(Deadline of name submission: June 15, 2015 23:59 UTC)</h3>
 
-<%if @club and !@club.can_suggest%>
-  <div class='row'>
-      <h3>Your suggestion</h3>
-      <table class="table table-condensed table-hover">
-        <thead>
-          <tr>
-            <td>Your system name</td>
-            <td> Host Star (catalogue)</td>
-            <td> Number of planets</td>
-            <td>Constellation (English)</td>
-            <td>Visibility </td>
-            <td>V magnitude </td>
-          </tr>
-        </thead>
-        <tbody>
-          <%=render  partial: "system_table_rows", :locals=>{system:@club.proposed_names.first.system, club:@club, show_proposed_name:true, only_system: true }%>
-        </tbody>
-      </table>
-  </div>
-<%end%>
-
 <div class='row'>
-  <%if @club and !@club.can_suggest%>
-    <h3>Other nameable systems</h3>
-  <%end%>
   <div class="table-responsive">
     <table class="table table-condensed table-hover">
       <thead>
@@ -49,13 +25,9 @@
           <td>V magnitude </td></tr>
       </thead>
       <tbody>
-        <%@systems.select{|s| s.nameable==true or s.nameable_planets > 0}.each do |s|%>
-          <%if @club%>
-            <%=render  partial: "system_table_rows", :locals=>{system:s, club:@club, show_proposed_name:false, only_system: true }%>
-          <%else%>
-            <%=render  partial: "system_table_rows", :locals=>{system:s, show_proposed_name:false, only_system: true}%>
-          <%end%>
-        <%end%>
+        <% @systems.select{|s| s.nameable==true or s.nameable_planets > 0}.each do |s| %>
+          <%=render  partial: "system_table_rows", :locals=>{system: s, show_proposed_name: false, only_system: true}%>
+        <% end %>
       </tbody>
     </table>
   </div>

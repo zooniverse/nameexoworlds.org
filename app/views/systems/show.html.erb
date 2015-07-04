@@ -9,12 +9,6 @@
   <div class ='col-md-7'>
     <div class="panel panel-default ">
       <div class="panel-heading">Star details</div>
-      <p class='club_prompt'>Suggest a name for this star(16 letters or less)</p>
-        <div class='row systemNameEntry' data-system-id="<%=@system.id%>">
-          <input    class='col-md-4 limit_text'  name='system[name]' type='text' placeholder='Star name (16 characters)'></input>
-          <textarea class='col-md-7 col-md-offset-1' name='system[description]' placeholder="Description"></textarea>
-        </div>
-      </p>
 
       <ul class="list-group">
         <li class="list-group-item">Constellation: <span class=' pull-right'><%=@system.constellation%></span></li>
@@ -35,22 +29,6 @@
         <%@system.planets.each do |planet|%>
           <ul class="list-group">
             <h2 style='color:black'><%=planet.name%></h2>
-            <%if @club and planet.nameable%>
-              <%if @system.has_name_from(@club)%>
-                <p class='club_prompt'>Your club has suggested the name <span style='color:red'><%=planet.has_name_from(@club).name%></span>.</p>
-                <p class='club_prompt'><%=planet.has_name_from(@club).name%></p>
-              <%elsif @club.can_suggest%>
-                <p class='club_prompt'> Suggest a name for this planet</p>
-
-                <div data-planet-id="<%=planet.id%>" class='row planetNameEntry'>
-                  <input    class='col-md-4 limit_text'  name='planets[<%=planet.id%>][name]'w type='text' placeholder='Planet name (16 characters)'></input>
-                  <textarea class='col-md-7 col-md-offset-1' name='planets[<%=planet.id%>][description]' placeholder="Description"></textarea>
-                </div>
-
-              <%end%>
-            <%else%>
-              <p class='club_prompt'>This planet is currently not nameable</p>
-            <%end%>
             <li class="list-group-item">Mass (Jupiters): <span class='pull-right'> <%=planet.mass_jup%></span></li>
             <li class="list-group-item">Mass (Earths): <span class='pull-right'><%=planet.mass_earth%></span> </li>
             <li class="list-group-item">Period (days): <span class='pull-right'><%=planet.period%> </span></li>
@@ -61,27 +39,3 @@
     </div>
   </div>
 </div>
-
-
-<%if @system.nameable or @system.nameable_planets > 0 %>
-  <%if @club%>
-    <%if @club.can_suggest or @club.has_propsed_for_system(@system) %>
-      <div class='row'>
-        <div  class='col-md-12'>
-          <div class="panel panel-default ">
-            <div class="panel-heading">Remarks about your submission</div>
-            <div class="panel-body">
-              <% if @club.has_propsed_for_system(@system)%>
-                <p class='club_prompt'><%=@system.remarks_for_club(@club).body%></p>
-                <button id='removeSuggestion' class='pull-right btn btn-primary btn-lg' value='submit'>Remove Submission</button>
-              <%elsif @club.can_suggest%>
-                <textarea id='remarks' style='margin-bottom:20px' class='col-md-12' name='remarks' placeholder='Remarks'></textarea>
-                <button id='saveSubmission' class='pull-right btn btn-primary btn-lg' value='submit'>Save Submission</button>
-              <%end%>
-            </div>
-          </div>
-        </div>
-      </div>
-    <%end%>
-  <%end%>
-<%end%>
