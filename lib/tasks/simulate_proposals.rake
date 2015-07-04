@@ -12,7 +12,7 @@ task :simulate_proposals => :environment do
   Club.delete_all
 
   2000.times do |club_index|
-    club = Club.create! username: "Club #{club_index}", email: "club#{club_index}@example.com"
+    club = Club.create! username: Faker::Company.name, email: Faker::Internet.safe_email(club_index)
 
     system = systems[rand(systems.length)]
 
