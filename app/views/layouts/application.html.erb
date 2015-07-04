@@ -41,13 +41,6 @@
       <ul class="nav navbar-nav nav-collapse navbar-left">
         <li><a href="/the_process">The Process</a></li>
         <li><a href="/the_exoworlds">The ExoWorlds</a></li>
-        <%if current_club%>
-          <li><%= link_to current_club.username, current_club%></li>
-          <li><%= link_to "logout", "/clubs/sign_out"%></li>
-        <%else%>
-          <li><a href="/clubs/sign_in">Organization Sign In</a></li>
-        <%end%>
-
       </ul>
       <div class='nav pull-right'>
         <div style='margin-top:12px' id="google_translate_element"></div><script type="text/javascript">
