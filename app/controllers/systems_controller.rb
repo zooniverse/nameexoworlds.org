@@ -16,7 +16,7 @@ class SystemsController < ApplicationController
   end
 
   def add_public_vote
-    @user   = current
+    @user   = current_user
     @system = System.find(params[:id])
     @name   = @system.propsed_names(params[:proposed_name_id])
 
@@ -28,7 +28,7 @@ class SystemsController < ApplicationController
   end
 
   def remove_public_vote
-    @user   = current
+    @user   = current_user
     @system = System.find(params[:id])
     @name   = @system.propsed_names(params[:proposed_name_id])
 
