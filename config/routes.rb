@@ -31,7 +31,6 @@ Astronamer::Application.routes.draw do
     end
   end
 
-
   resources :planets do
     member do
       post 'add_public_vote'
@@ -41,6 +40,10 @@ Astronamer::Application.routes.draw do
       post 'add_club_name'
       post 'remove_club_name'
     end
+  end
+
+  resources :proposals do
+    resources :proposal_votes, only: [:create]
   end
 
   resources :clubs

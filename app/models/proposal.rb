@@ -5,18 +5,10 @@ class Proposal < ActiveRecord::Base
   has_one  :proposed_system_name, -> { for_system }, class_name: "ProposedName", foreign_key: 'proposal_id'
   has_many :proposed_planet_names, -> { for_planet }, class_name: "ProposedName", foreign_key: 'proposal_id'
 
-  # def system_proposal
-  #   system.proposed_names.find {|name| name.club_id == club.id }
-  # end
+  has_many :proposal_votes
 
-  # def planet_proposals
-  #   system.planets.map do |planet|
-  #     [planet, planet.proposed_names.find {|name| name.club_id == club.id }]
-  #   end.to_h
-  # end
-
-  # def planet_proposal(planet)
-  #   planet_proposals[planet]
-  # end
+  def add_vote_from(user)
+    proposal_votes.where(user: user, system: system).first_or_create!
+  end
 end
 

@@ -45,7 +45,7 @@
                 <% end %>
                 <td>
                   <% if user_signed_in? %>
-                    <button>Vote!</button>
+                    <%= button_to "Vote", [proposal, :proposal_votes], method: :post %>
                   <% else %>
                     (sign in to vote)
                   <% end %>
