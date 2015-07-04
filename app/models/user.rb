@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   devise :omniauthable, omniauth_providers: [:developer, :twitter, :facebook]
   has_many :votes
+  has_many :proposal_votes
 
   def self.find_or_create_from_auth_hash(auth)
     where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
@@ -24,5 +25,9 @@ class User < ActiveRecord::Base
 
   def dec_vote_count
     decrement :vote_count
+  end
+
+  def has_voted_for_naming_of_system?(system)
+    proposal_votes.where(system: system).present?
   end
 end

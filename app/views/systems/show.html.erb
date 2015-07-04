@@ -44,10 +44,16 @@
                   <td><%= planet_proposal.name %></td>
                 <% end %>
                 <td>
-                  <% if user_signed_in? %>
-                    <%= button_to "Vote", [proposal, :proposal_votes], method: :post %>
+                  <% if @proposal_vote %>
+                    <% if @proposal_vote.proposal_id == proposal.id %>
+                      You voted for this proposal
+                    <% end %>
                   <% else %>
-                    (sign in to vote)
+                    <% if user_signed_in? %>
+                      <%= button_to "Vote", [proposal, :proposal_votes], method: :post, class: "btn", style: "min-width: 100px" %>
+                    <% else %>
+                      (sign in to vote)
+                    <% end %>
                   <% end %>
                 </td>
               </tr>
