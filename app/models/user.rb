@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
 
   if Rails.env.production?
-    devise :omniauthable, omniauth_providers: [:twitter, :facebook]
+    devise :omniauthable, omniauth_providers: [:twitter, :facebook, :google_oauth2]
   else
-    devise :omniauthable, omniauth_providers: [:developer, :twitter, :facebook]
+    devise :omniauthable, omniauth_providers: [:developer, :twitter, :facebook, :google_oauth2]
   end
 
   has_many :votes
