@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :omniauthable
+  devise :omniauthable, omniauth_providers: [:developer, :twitter, :facebook]
   has_many :votes
 
   def self.find_or_create_from_auth_hash(auth)

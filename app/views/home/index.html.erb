@@ -50,8 +50,12 @@
     <div class="col-lg-6">
       <div class="text-center">
         <h1>For individuals</h1>
-        <p>To vote, sign up, and we’ll let you know when we’re ready for you! (To be opened on Jun 2015)<br><br><br> </p>
-        <a href='#signup'><button class="btn btn-primary btn-lg">Sign Up</button></a>
+        <p>To vote, sign in with any of your accounts listed below.<br><br><br> </p>
+        <a href="<%= user_omniauth_authorize_path(:twitter) %>"><button class="btn btn-primary btn-lg">Twitter</button></a>
+        <a href="<%= user_omniauth_authorize_path(:facebook) %>"><button class="btn btn-primary btn-lg">Facebook</button></a>
+        <% if Rails.env.development? %>
+        <a href="<%= user_omniauth_authorize_path(:developer) %>"><button class="btn btn-primary btn-lg">Dev</button></a>
+        <% end %>
       </div>
     </div>
   </div>
