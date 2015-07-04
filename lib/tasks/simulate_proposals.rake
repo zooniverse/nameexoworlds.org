@@ -6,16 +6,21 @@ task :simulate_proposals => :environment do
   Planet.update_all(nameable: false)
   systems.sort_by {|i| rand }[0..19].each {|system| system.update_attributes nameable: true}
 
-  Club.delete_all
+  ProposalVote.delete_all
   ProposedName.delete_all
+  Proposal.delete_all
+  Club.delete_all
 
-  500.times do |club_index|
+  2000.times do |club_index|
     club = Club.create! username: "Club #{club_index}", email: "club#{club_index}@example.com"
 
-    system_voted_on = systems[rand(systems.length)]
-    system_voted_on.proposed_names.create! name: "Name from club #{club_index}", club: club
-    system_voted_on.planets.each do |planet|
-      planet.proposed_names.create! name: "Planet name from club #{club_index}", club: club
+    system = systems[rand(systems.length)]
+
+    proposal = Proposal.create(club: club, system: system)
+    proposal.create_proposed_system_name! name: "Name from club #{club_index}", club: club, nameable_entity: system
+
+    system.planets.each do |planet|
+      proposal.proposed_planet_names.create! name: "Planet name from club #{club_index}", club: club, nameable_entity: planet
     end
   end
 end
