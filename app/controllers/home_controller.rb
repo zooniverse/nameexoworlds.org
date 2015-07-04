@@ -2,9 +2,7 @@ class HomeController < ApplicationController
   respond_to :json, :html
   caches_page :the_exoworlds
 
-
   def index
-
   end
 
   def debug_session
