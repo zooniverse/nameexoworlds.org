@@ -145,33 +145,33 @@ nomenclature of astronomical objects such as stars, nebulae, or galaxies is desc
       </thead>
       <tbody>
         <tr class='section'><td colspan="10">1 exoplanet (5 systems)</td></tr>
-        <%@systems.select{|s| s.planets.count==1 and s.nameable==false}.each do |s|%>
+        <%@systems.select{|s| s.planets.size==1 and s.nameable==false}.each do |s|%>
           <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
         <tr class='section'><td colspan="10">1 star + 1 exoplanet (4 systems)</td></tr>
-        <%@systems.select{|s| s.planets.count==1 and s.nameable==true}.each do |s|%>
+        <%@systems.select{|s| s.planets.size==1 and s.nameable==true}.each do |s|%>
           <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
         <tr class='section'><td colspan=10> 1 star + 2 exoplanets (20 systems)</td></tr>
-        <%@systems.select{|s| s.planets.count==2 and s.nameable==true}.each do |s|%>
+        <%@systems.select{|s| s.planets.size==2 and s.nameable==true}.each do |s|%>
           <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
         <tr class='section'><td colspan=10>1 star + 3 exoplanets (9 systems)</td></tr>
 
-        <%@systems.select{|s| s.planets.count==3 and s.nameable==true}.each do |s|%>
+        <%@systems.select{|s| s.planets.size==3 and s.nameable==true}.each do |s|%>
           <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
         <tr class='section'><td colspan=10>1 star + 4 exoplanets (1 system)</td></tr>
 
-        <%@systems.select{|s| s.planets.count==4 and s.nameable==true}.each do |s|%>
+        <%@systems.select{|s| s.planets.size==4 and s.nameable==true}.each do |s|%>
           <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
 
         <tr class='section'><td colspan=10>1 star + 5 exoplanets (1 system)</td></tr>
-        <%@systems.select{|s| s.planets.count==5 and s.nameable==true}.each do |s|%>
+        <%@systems.select{|s| s.planets.size==5 and s.nameable==true}.each do |s|%>
           <%=render  partial: "system_table_rows", :locals=>{system:s,show_proposed_name:false, only_system: false}%>
         <%end%>
       </tbody>

@@ -7,15 +7,12 @@
   <%end%>
 
   <td><%=system.name%></td>
-  <td><%=system.planets.count%></td>
+  <td><%=system.planets.size%></td>
   <td><%=system.constellation%></td>
   <td><%=system.visibility%></td>
   <td><%=system.vmag%></td></tr>
 <%else%>
-
   <%system.planets.each do |planet|%>
-
-
       <%if show_proposed_name %>
         <td style='color:#3881C0'><%=system.has_name_from(club) ? system.has_name_from(club).name : "click to name"%></td>
         <td style='color:#3881C0'><%=planet.has_name_from(club) ? planet.has_name_from(club).name : "click to name"%></td>

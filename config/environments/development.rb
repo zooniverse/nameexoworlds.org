@@ -26,4 +26,15 @@ Astronamer::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    # Bullet.growl = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+    # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
+  end
 end

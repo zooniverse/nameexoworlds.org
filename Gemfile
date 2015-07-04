@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.4'
+gem 'rails', '4.0.13'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -61,4 +61,6 @@ gem 'faker'
 
 # Use debugger
 gem 'pry', group: [:development]
+gem 'bullet', group: [:development]
+gem 'quiet_assets', group: [:development]
 # gem 'debugger', group: [:development, :test]

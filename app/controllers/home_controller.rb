@@ -20,7 +20,7 @@ class HomeController < ApplicationController
 
   def the_exoworlds
     @club    = current_club
-    @systems = System.all
+    @systems = System.includes(:planets).all
   end
 
 end

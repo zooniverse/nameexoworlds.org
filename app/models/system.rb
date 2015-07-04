@@ -26,7 +26,11 @@ class System < ActiveRecord::Base
   end
 
   def nameable_planets
-    return planets.where({nameable: true}).count
+    if planets.loaded?
+      planets.select {|planet| planet.nameable? }.size
+    else
+      planets.where({nameable: true}).count
+    end
   end
 
   def remarks_for_club(club)
