@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
-  devise :omniauthable, omniauth_providers: [:developer, :twitter, :facebook]
+
+  if Rails.env.production?
+    devise :omniauthable, omniauth_providers: [:twitter, :facebook]
+  else
+    devise :omniauthable, omniauth_providers: [:developer, :twitter, :facebook]
+  end
+
   has_many :votes
   has_many :proposal_votes
 
