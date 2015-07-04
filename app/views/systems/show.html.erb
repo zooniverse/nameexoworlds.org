@@ -39,9 +39,19 @@
           <tbody>
             <% @proposals.each do |proposal| %>
               <tr>
-                <td><%= proposal.proposed_system_name.name %></td>
+                <td>
+                  <%= proposal.proposed_system_name.name %>
+                  <% if proposal.proposed_system_name.description.strip.present? %>
+                    <br/><span class="proposedNameDescription"><%= proposal.proposed_system_name.description %></span>
+                  <% end %>
+                </td>
                 <% proposal.proposed_planet_names.each do |planet_proposal| %>
-                  <td><%= planet_proposal.name %></td>
+                  <td>
+                    <strong><%= planet_proposal.name %></strong>
+                    <% if planet_proposal.description.strip.present? %>
+                      <br/><span class="proposedNameDescription"><%= planet_proposal.description %></span>
+                    <% end %>
+                  </td>
                 <% end %>
                 <td>
                   <% if @proposal_vote %>

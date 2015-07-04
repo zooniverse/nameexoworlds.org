@@ -12,15 +12,15 @@ task :simulate_proposals => :environment do
   Club.delete_all
 
   2000.times do |club_index|
-    club = Club.create! username: Faker::Company.name, email: Faker::Internet.safe_email(club_index)
+    club = Club.create! username: Faker::Company.name, email: "club#{club_index}@example.com"
 
     system = systems[rand(systems.length)]
 
     proposal = Proposal.create(club: club, system: system)
-    proposal.create_proposed_system_name! name: "Name from club #{club_index}", club: club, nameable_entity: system
+    proposal.create_proposed_system_name! name: "Name from club #{club_index}", club: club, nameable_entity: system, description: Faker::Lorem.sentence(0, true, 5)
 
     system.planets.each do |planet|
-      proposal.proposed_planet_names.create! name: "Planet name from club #{club_index}", club: club, nameable_entity: planet
+      proposal.proposed_planet_names.create! name: "Planet name from club #{club_index}", club: club, nameable_entity: planet, description: Faker::Lorem.sentence(0, true, 5)
     end
   end
 end
