@@ -1,5 +1,7 @@
 
-<h1><%=@system.name%></h1>
+<div class="row">
+  <h1><%=@system.name%></h1>
+
   <div class= 'col-md-5'>
     <%= react_component "SystemViewer", star_mag: @system.vmag, planets:@system.planets %>
   </div>
@@ -7,27 +9,24 @@
   <div class ='col-md-7'>
     <div class="panel panel-default ">
       <div class="panel-heading">Star details</div>
+      <p class='club_prompt'>Suggest a name for this star(16 letters or less)</p>
+        <div class='row systemNameEntry' data-system-id="<%=@system.id%>">
+          <input    class='col-md-4 limit_text'  name='system[name]' type='text' placeholder='Star name (16 characters)'></input>
+          <textarea class='col-md-7 col-md-offset-1' name='system[description]' placeholder="Description"></textarea>
+        </div>
+      </p>
 
-
-        <p class='club_prompt'>Suggest a name for this star(16 letters or less)</p>
-          <div class='row systemNameEntry' data-system-id="<%=@system.id%>">
-            <input    class='col-md-4 limit_text'  name='system[name]' type='text' placeholder='Star name (16 characters)'></input>
-            <textarea class='col-md-7 col-md-offset-1' name='system[description]' placeholder="Description"></textarea>
-          </div>
-        </p>
-
-        <ul class="list-group">
-          <li class="list-group-item">Constallation: <span class=' pull-right'><%=@system.constellation%></span></li>
-          <li class="list-group-item">Vmag: <span class='pull-right'><%=@system.vmag%></span></li>
-          <li class="list-group-item">Visibility: <span class='pull-right'><%=@system.visibility%></span> </li>
-          <li class="list-group-item">Number of planets: <span class='pull-right'><%=@system.planets.count%></span> </li>
-          <li class="list-group-item">Namable:    <span class='pull-right'><%=@system.nameable ? "Yes" : "No"%></span></li>
-        </ul>
-      </div>
+      <ul class="list-group">
+        <li class="list-group-item">Constallation: <span class=' pull-right'><%=@system.constellation%></span></li>
+        <li class="list-group-item">Vmag: <span class='pull-right'><%=@system.vmag%></span></li>
+        <li class="list-group-item">Visibility: <span class='pull-right'><%=@system.visibility%></span> </li>
+        <li class="list-group-item">Number of planets: <span class='pull-right'><%=@system.planets.count%></span> </li>
+        <li class="list-group-item">Namable:    <span class='pull-right'><%=@system.nameable ? "Yes" : "No"%></span></li>
+      </ul>
     </div>
   </div>
-
 </div>
+
 <div class='row'>
   <div class='col-md-12'>
     <div class="panel panel-default ">
