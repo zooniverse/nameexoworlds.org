@@ -13,50 +13,37 @@
   </div>
 </div>
 
-
 <div class="row">
-
   <h1 style='font-size:60px' class="text-center hidden-xs"><strong>NameExoWorlds</strong></h1>
   <h1 class="text-center visible-xs"><strong>NameExoWorlds</strong></h1>
   <p class="lead text-center">Help decide the names of planets orbiting other stars</p>
 </div>
 
-<%if current_club%>
-
-  <div  class="row">
-    <div class='text-center'>
-      <h1>Welcome back <%=current_club.username%></h1>
-      <%if current_club.can_vote%>
-        <p>You can now start naming systems.</p>
-        <a href='/systems'><button class="btn btn-primary btn-lg">See systems</button></a>
-        <a href='/clubs/<%=current_club.id%>'><button class="btn btn-primary btn-lg">See your names</button></a>
-      <%else%>
-        <p>Your organisation is not eligible for joining the NameExoWorlds contest, please refer to <a href="https://directory.iau.org/faq">https://directory.iau.org/faq</a> for details.
-      <%end%>
+<div id='involved' class="row">
+  <div class="col-lg-6">
+    <div class="text-center">
+      <h1>For Public and Astronomy-Interested Organisations</h1>
+      <p>Thanks for picking the top 20 systems, and putting together a list of name proposals. Voting has now commenced.</p>
     </div>
   </div>
-
-<%else%>
-  <div id='involved' class="row">
-    <div class="col-lg-6">
-      <div class="text-center">
-        <h1>For Public and Astronomy-Interested Organisations</h1>
-        <p>To submit a naming proposal, register your club with the IAU.</p>
-
-        <a href='https://directory.iau.org/register'><button class="btn btn-primary btn-lg">Register</button></a>
-        <a href='/clubs/sign_in'><button class="btn btn-primary btn-lg">Sign In</button></a>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="text-center">
+  <div class="col-lg-6">
+    <div class="text-center">
+      <% if signed_in? %>
         <h1>For individuals</h1>
-        <p>To vote, sign up, and we’ll let you know when we’re ready for you! (To be opened on Jun 2015)<br><br><br> </p>
-        <a href='#signup'><button class="btn btn-primary btn-lg">Sign Up</button></a>
-      </div>
+        <p>Thanks for signing in. You can now <%= link_to "vote on names", the_exoworlds_path %>.</p>
+
+      <% else %>
+        <h1>For individuals</h1>
+        <p>To vote, sign in with any of your accounts listed below.<br><br><br> </p>
+        <a href="<%= user_omniauth_authorize_path(:twitter) %>"><button class="btn btn-primary btn-lg">Twitter</button></a>
+        <a href="<%= user_omniauth_authorize_path(:facebook) %>"><button class="btn btn-primary btn-lg">Facebook</button></a>
+        <% if Rails.env.development? %>
+        <a href="<%= user_omniauth_authorize_path(:developer) %>"><button class="btn btn-primary btn-lg">Dev</button></a>
+        <% end %>
+      <% end %>
     </div>
   </div>
-
-<%end%>
+</div>
 
 <hr>
 <a href="http://directory.iau.org"><img src="https://directory.iau.org/f/page/39/banner_Directory.png"></a>

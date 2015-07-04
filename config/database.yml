@@ -22,7 +22,7 @@ test:
   encoding: unicode
   database: astronamer_test
   pool: 5
-  username: stuartlynn
+  username: <%= ENV["USER"] %>
   password:
 
 

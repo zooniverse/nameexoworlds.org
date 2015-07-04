@@ -3,6 +3,11 @@ Astronamer::Application.routes.draw do
   devise_for :clubs
   get '/auth/:provider/callback', to: 'sessions#create'
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  devise_scope :user do
+    get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -30,7 +35,6 @@ Astronamer::Application.routes.draw do
     end
   end
 
-
   resources :planets do
     member do
       post 'add_public_vote'
@@ -40,6 +44,10 @@ Astronamer::Application.routes.draw do
       post 'add_club_name'
       post 'remove_club_name'
     end
+  end
+
+  resources :proposals do
+    resources :proposal_votes, only: [:create]
   end
 
   resources :clubs

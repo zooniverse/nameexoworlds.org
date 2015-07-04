@@ -1,5 +1,7 @@
 
-<h1><%=@system.name%></h1>
+<div class="row">
+  <h1><%=@system.name%></h1>
+
   <div class= 'col-md-5'>
     <%= react_component "SystemViewer", star_mag: @system.vmag, planets:@system.planets %>
   </div>
@@ -8,50 +10,79 @@
     <div class="panel panel-default ">
       <div class="panel-heading">Star details</div>
 
+      <ul class="list-group">
+        <li class="list-group-item">Constellation: <span class=' pull-right'><%=@system.constellation%></span></li>
+        <li class="list-group-item">Vmag: <span class='pull-right'><%=@system.vmag%></span></li>
+        <li class="list-group-item">Visibility: <span class='pull-right'><%=@system.visibility%></span> </li>
+        <li class="list-group-item">Number of planets: <span class='pull-right'><%=@system.planets.count%></span> </li>
+        <li class="list-group-item">Namable:    <span class='pull-right'><%=@system.nameable ? "Yes" : "No"%></span></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-        <p class='club_prompt'>Suggest a name for this star(16 letters or less)</p>
-          <div class='row systemNameEntry' data-system-id="<%=@system.id%>">
-            <input    class='col-md-4 limit_text'  name='system[name]' type='text' placeholder='Star name (16 characters)'></input>
-            <textarea class='col-md-7 col-md-offset-1' name='system[description]' placeholder="Description"></textarea>
-          </div>
-        </p>
-
-        <ul class="list-group">
-          <li class="list-group-item">Constallation: <span class=' pull-right'><%=@system.constellation%></span></li>
-          <li class="list-group-item">Vmag: <span class='pull-right'><%=@system.vmag%></span></li>
-          <li class="list-group-item">Visibility: <span class='pull-right'><%=@system.visibility%></span> </li>
-          <li class="list-group-item">Number of planets: <span class='pull-right'><%=@system.planets.count%></span> </li>
-          <li class="list-group-item">Namable:    <span class='pull-right'><%=@system.nameable ? "Yes" : "No"%></span></li>
-        </ul>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Proposed names</div>
+      <div class="panel-body">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <td><%= @system.name %></td>
+              <% @system.planets.each do |planet| %>
+                <td><%= link_to planet.name, "#planet-info-#{planet.id}" %></td>
+              <% end %>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @proposals.each do |proposal| %>
+              <tr>
+                <td>
+                  <%= proposal.proposed_system_name.name %>
+                  <% if proposal.proposed_system_name.description.strip.present? %>
+                    <br/><span class="proposedNameDescription"><%= proposal.proposed_system_name.description %></span>
+                  <% end %>
+                </td>
+                <% proposal.proposed_planet_names.each do |planet_proposal| %>
+                  <td>
+                    <strong><%= planet_proposal.name %></strong>
+                    <% if planet_proposal.description.strip.present? %>
+                      <br/><span class="proposedNameDescription"><%= planet_proposal.description %></span>
+                    <% end %>
+                  </td>
+                <% end %>
+                <td>
+                  <% if @proposal_vote %>
+                    <% if @proposal_vote.proposal_id == proposal.id %>
+                      You voted for this proposal
+                    <% end %>
+                  <% else %>
+                    <% if user_signed_in? %>
+                      <%= button_to "Vote", [proposal, :proposal_votes], method: :post, class: "btn", style: "min-width: 100px" %>
+                    <% else %>
+                      (sign in to vote)
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
 </div>
+
 <div class='row'>
   <div class='col-md-12'>
     <div class="panel panel-default ">
       <div class="panel-heading">Planet details</div>
       <div class="panel-body">
         <%@system.planets.each do |planet|%>
-          <ul class="list-group">
+          <ul id="planet-info-<%= planet.id %>" class="list-group">
             <h2 style='color:black'><%=planet.name%></h2>
-            <%if @club and planet.nameable%>
-              <%if @system.has_name_from(@club)%>
-                <p class='club_prompt'>Your club has suggested the name <span style='color:red'><%=planet.has_name_from(@club).name%></span>.</p>
-                <p class='club_prompt'><%=planet.has_name_from(@club).name%></p>
-              <%elsif @club.can_suggest%>
-                <p class='club_prompt'> Suggest a name for this planet</p>
-
-                <div data-planet-id="<%=planet.id%>" class='row planetNameEntry'>
-                  <input    class='col-md-4 limit_text'  name='planets[<%=planet.id%>][name]'w type='text' placeholder='Planet name (16 characters)'></input>
-                  <textarea class='col-md-7 col-md-offset-1' name='planets[<%=planet.id%>][description]' placeholder="Description"></textarea>
-                </div>
-
-              <%end%>
-            <%else%>
-              <p class='club_prompt'>This planet is currently not nameable</p>
-            <%end%>
             <li class="list-group-item">Mass (Jupiters): <span class='pull-right'> <%=planet.mass_jup%></span></li>
             <li class="list-group-item">Mass (Earths): <span class='pull-right'><%=planet.mass_earth%></span> </li>
             <li class="list-group-item">Period (days): <span class='pull-right'><%=planet.period%> </span></li>
@@ -62,27 +93,3 @@
     </div>
   </div>
 </div>
-
-
-<%if @system.nameable or @system.nameable_planets > 0 %>
-  <%if @club%>
-    <%if @club.can_suggest or @club.has_propsed_for_system(@system) %>
-      <div class='row'>
-        <div  class='col-md-12'>
-          <div class="panel panel-default ">
-            <div class="panel-heading">Remarks about your submission</div>
-            <div class="panel-body">
-              <% if @club.has_propsed_for_system(@system)%>
-                <p class='club_prompt'><%=@system.remarks_for_club(@club).body%></p>
-                <button id='removeSuggestion' class='pull-right btn btn-primary btn-lg' value='submit'>Remove Submission</button>
-              <%elsif @club.can_suggest%>
-                <textarea id='remarks' style='margin-bottom:20px' class='col-md-12' name='remarks' placeholder='Remarks'></textarea>
-                <button id='saveSubmission' class='pull-right btn btn-primary btn-lg' value='submit'>Save Submission</button>
-              <%end%>
-            </div>
-          </div>
-        </div>
-      </div>
-    <%end%>
-  <%end%>
-<%end%>
