@@ -22,6 +22,10 @@ class ProposedName < ActiveRecord::Base
   #   planet.dec_vote_count, self
   # end
 
+  def description
+    super || ""
+  end
+
   def add_vote_from_user(user)
     votes.create(user: user)
   end
