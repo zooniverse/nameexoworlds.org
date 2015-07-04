@@ -21,13 +21,51 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Proposed names</div>
+      <div class="panel-body">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <td><%= @system.name %></td>
+              <% @system.planets.each do |planet| %>
+                <td><%= link_to planet.name, "#planet-info-#{planet.id}" %></td>
+              <% end %>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @proposals.each do |proposal| %>
+              <tr>
+                <td><%= proposal.proposed_system_name.name %></td>
+                <% proposal.proposed_planet_names.each do |planet_proposal| %>
+                  <td><%= planet_proposal.name %></td>
+                <% end %>
+                <td>
+                  <% if user_signed_in? %>
+                    <button>Vote!</button>
+                  <% else %>
+                    (sign in to vote)
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class='row'>
   <div class='col-md-12'>
     <div class="panel panel-default ">
       <div class="panel-heading">Planet details</div>
       <div class="panel-body">
         <%@system.planets.each do |planet|%>
-          <ul class="list-group">
+          <ul id="planet-info-<%= planet.id %>" class="list-group">
             <h2 style='color:black'><%=planet.name%></h2>
             <li class="list-group-item">Mass (Jupiters): <span class='pull-right'> <%=planet.mass_jup%></span></li>
             <li class="list-group-item">Mass (Earths): <span class='pull-right'><%=planet.mass_earth%></span> </li>

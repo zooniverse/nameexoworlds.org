@@ -7,6 +7,16 @@ class SystemsController < ApplicationController
 
   protect_from_forgery :except => [:add_club_vote, :remove_club_vote]
 
+  def index
+    redirect_to '/the_exoworlds'
+  end
+
+  def show
+    @club = current_club
+    @system = System.includes(:proposals => [:proposed_system_name, :proposed_planet_names]).find(params[:id])
+    @proposals = @system.proposals
+  end
+
   def add_club_vote
     if @system = System.find(params[:id]) and (current_club )
       @system.vote_from_club(current_club)
@@ -47,15 +57,6 @@ class SystemsController < ApplicationController
     else
       raise ActionController::RoutingError.new('Not Found')
     end
-  end
-
-  def index
-    redirect_to '/the_exoworlds'
-  end
-
-  def show
-    @club = current_club
-    @system = System.find(params[:id])
   end
 
   def remove_club_suggestion

@@ -104,15 +104,22 @@ ul.spaced li{
 	margin-bottom: 10px;
 }
 
-
-.table tbody tr:hover td, .table tbody tr:hover th {
-    background-color: rgba(0,0,0,0.7);
+.table tbody tr:hover td,
+.table tbody tr:hover th {
+  background-color: rgba(0,0,0,0.7);
 }
 
+.panel .table tbody tr:hover td,
+.panel .table tbody tr:hover th {
+  background-color: rgba(0,0,0,0.1);
+}
 
 .table thead td{
-		color:#3881C0;
+  color:#3881C0;
+}
 
+.table thead td a {
+  color:#3881C0;
 }
 
 .navbar-toggle {
